@@ -1,0 +1,197 @@
+---
+title: "Historical"
+author: "Laura Slavsky"
+date: "11/25/2019"
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r}
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(scales)
+library(DT)
+```
+
+
+read in the data (Randy added 26 Nov 19)
+
+```{r}
+BpSForGraphs <- read_csv("BpSForGraphs.csv", 
+    col_types = cols(X1 = col_skip(), X1_1 = col_skip(), 
+        X1_2 = col_skip(), X1_3 = col_skip(), 
+        X1_4 = col_skip()))
+```
+
+
+
+horizontal bar chart
+
+
+```{r}
+BPSdescend <- BpSForGraphs %>%
+  group_by(GROUPVEG) %>%
+  summarise(ACRES = sum(ACRES))
+
+
+```
+
+
+
+```{r}
+g <- ggplot(BpSForGraphs, aes(GROUPVEG, ACRES)) +
+
+   coord_flip() + 
+  scale_y_continuous(labels=comma) +
+  geom_col() +
+
+    coord_flip() +
+    scale_y_continuous(labels = comma) +
+    geom_col()
+g
+```
+
+Group by BPS name (from Randy's googling)
+
+Randy modified to use "BpSForGraphs" as input...
+```{r}
+DescendVeg <- BpSForGraphs %>%
+  group_by(GROUPVEG) %>%
+  summarise(ACRES = sum(ACRES))
+```
+
+
+Put in descending order
+```{r}
+g <- ggplot(DescendVeg, aes(x = reorder(GROUPVEG, ACRES), y = ACRES)) +
+
+   coord_flip() + 
+  scale_y_continuous(labels=comma) +
+  geom_col() 
+  
+g
+```
+
+## Draft Historical Groupveg plot
+Rename Axes, put title & center it, & color, & remove legend, remove gridlines
+```{r}
+gBpSGroups <- ggplot(DescendVeg, aes(x = reorder(GROUPVEG, ACRES), y = ACRES, fill = GROUPVEG)) +
+
+   coord_flip() + 
+  scale_y_continuous(labels=comma) +
+  geom_col() +
+  
+  scale_fill_manual(values = c("Hardwood" = "darkorchid4", "Riparian" = "blue", "Hardwood-Conifer" = "darkgoldenrod3", "Conifer" = "darkgreen")) +
+  
+  labs(title="Historical Group Vegetation for the State of MI", y="Acres", x="") +
+  theme(legend.position="none", plot.title = element_text(hjust = 0.5), panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+ 
+gBpSGroups
+```
+
+reduce number of ecosystem types
+```{r}
+bps_chop <- BpSForGraphs[c(1:15),]
+```
+
+
+
+## BPS graph top 15: 
+
+```{r}
+top15 <- ggplot(bps_chop, aes(x = reorder(BPS_NAME, ACRES), y = ACRES, fill = BPS_NAME)) +
+
+   coord_flip() + 
+  scale_y_continuous(labels=comma) +
+  geom_col() +
+  
+  labs(title="Forested Ecosystems of Michigan-Historical Amounts", y="Acres", x="") +
+  theme(legend.position="none", 
+        plot.title = element_text(hjust = 0.5), 
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank()) 
+
+ 
+top15
+```
+
+
+Randy will step into Excel to fix floodplain issue (there are two in the current BpSForGraphs table=GRRRR)
+
+```{r}
+write.csv(BpSForGraphs, file = "BpSForGraphs.csv")
+```
+
+
+
+## Data Table for BpS (Using Randy's Code)
+
+```{r}
+datatable(BpSForGraphs,
+          class = 'cell-border stripe',
+          filter = 'top', 
+          options = list(pageLength = 5, autoWidth = TRUE))
+```
+
+
+
+## Sunburst chart
+
+```{r}
+# libraries
+library(treemap)
+library(sunburstR)
+
+# Load dataset from github
+data <- read.table("https://github.com/rswaty/mi_forests/blob/master/BpSForGraphs.csv", header=T, sep=";")
+data[ which(data$value==-1),"value"] <- 1
+colnames(data) <- c("BPS_NAME", "GROUPVEG", "ACRES", "PERCENT")
+
+# Reformat data for the sunburstR package
+data <- data %>%
+  filter(Continent != "") %>%
+  mutate(path = paste(GROUPVEG, BPS_NAME, PERCENT, sep="-")) %>%
+  dplyr::select(path, PERCENT)
+
+# Plot
+p <- sunburst(data, legend=FALSE)
+```
+
+got error: "Error in UseMethod("filter_") : 
+  no applicable method for 'filter_' applied to an object of class "function""
+
+original code I tried to adjust: 
+
+# libraries
+library(tidyverse)
+library(treemap)
+library(sunburstR)
+
+# Load dataset from github
+data <- read.table("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/11_SevCatOneNumNestedOneObsPerGroup.csv", header=T, sep=";")
+data[ which(data$value==-1),"value"] <- 1
+colnames(data) <- c("Continent", "Region", "Country", "Pop")
+
+# Reformat data for the sunburstR package
+data <- data %>%
+  filter(Continent != "") %>%
+  mutate(path = paste(Continent, Region, Country, sep="-")) %>%
+  dplyr::select(path, Pop)
+
+# Plot
+p <- sunburst(data, legend=FALSE)
+p
+
+and link to website: https://www.data-to-viz.com/graph/sunburst.html
+
+
+
+
+
+
+
+
+
+

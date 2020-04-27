@@ -1,0 +1,60 @@
+---
+title: "try"
+author: "Laura Slavsky"
+date: "4/21/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(scales)
+library(DT)
+library(knitr)
+```
+
+
+### First, let's start with looking how group ecosystems have changed over time, starting with BPS (Historic).
+
+#### The four most common ecosystems in the MH were Hardwood, Riparian, Conifer, and Hardwood-Conifer. These are the combined Group Names. Hardwoods occupied just under half, 47.9%, of the area. Open water was removed from the groups and Barren-Rock/Sand/Clay which occupied half of one percent of the historic area. 
+
+```{r echo=FALSE, include=TRUE}
+GP_ACRES_CHOP <- GP_ACRES_CHOP 
+ggplot(GP_ACRES_CHOP, aes(x = reorder(BPS_GP_NAME, ACRES), y = ACRES)) + 
+  geom_bar(stat = "identity", fill = "grey") +
+  coord_flip() +
+
+  ggtitle("BPS Group Ecosystems of the MH") +
+  labs(x = "", y = "Acres") +
+  scale_y_continuous(labels = comma) +
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        #panel.background = element_blank(), axis.line = element_line(colour = "black"))
+```
+
+
+
+#### Next, looking at the current (EVT) ecosystem groups:
+
+### There are several more ecosystems currently represented in the Michigamme Highlands compared to the BPS data, even at the group level. The majority of the MH are still hardwood, represented by the "Yellow Birch-Sugar Maple Forest" with over 330,000 acres (__%) throughout dominated by this ecosytem group. There are also other types of hardwood forests such as Pine-Hemlock & Spruce-Fir represented
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

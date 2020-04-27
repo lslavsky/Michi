@@ -1,0 +1,27 @@
+---
+title: "MichiDataWrangle"
+author: "Randy Swaty"
+date: "4/1/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Background and GIS methods
+We need to make a number of charts and maps for the Michigamme Highlands that:
+
+* compare past and present acres per ecosystem
+* identify degraded lands
+* summarize condtions of existing cover, height and type
+* etc.
+
+To get started Randy did a "Combine" in ArcGIS 10.4 of:
+
+* LANDFIRE ReMap (version 200) Existing Vegetation Cover, Height and Type (evc, evh and evt)
+* LANDFIRE 2012 (version 130) Biophysical Settings
+* Michigamme Highlands raster (converted from polygon supplied by Emily)
+
+This 90k+ row combine was exported to Excel for initial cleaning and is in the "michCBN_WU.xlsx" file.  For example EVT_GP_N was cleaned, renaming anything "Agricultural*" to simply "Agricultural".  
+

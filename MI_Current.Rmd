@@ -1,0 +1,86 @@
+---
+title: "Current-nicer"
+author: "All"
+date: "11/25/2019"
+output:
+  html_document:
+    theme: journal
+    toc: TRUE
+---
+## Installed libraries
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(scales)
+library(DT)
+
+
+```
+
+## Read in data
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+EVT_NatForGraphs <- read_csv("EVT_NatForGraphs.csv")
+View(EVT_NatForGraphs)
+```
+
+## Horizontal Bar Chart-ALL EVTS
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+EVTnatArranged <- arrange(EVT_NatForGraphs, desc(ACRES))
+
+ggplot(EVTnatArranged, aes(x = reorder(EVT_NAME, ACRES), y = ACRES)) + ###
+  geom_bar(stat = "identity", fill = "grey") +
+  coord_flip() +
+  ggtitle("Most Widespread Forest Ecosystems (2014)") +
+  labs(x = "", y = "Acres") +
+  scale_y_continuous(labels = comma) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+```
+
+## Horizontal Bar Chart-Current Groupveg
+
+### Group and sum
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+groupVEG <- EVTnatArranged %>%
+  group_by(GROUPVEG) %>%
+  summarise(ACRES = sum(ACRES))
+```
+
+### Graph using "Laura's Theme"
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+gEVTGroups <- ggplot(groupVEG, aes(x = reorder(GROUPVEG, ACRES), y = ACRES, fill = GROUPVEG)) +
+
+
+   coord_flip() + 
+  scale_y_continuous(labels=comma) +
+  geom_col() +
+
+    scale_fill_manual(values = c("Hardwood" = "darkorchid4", "Riparian" = "blue", "Conifer-Hardwood" = "darkgoldenrod3", "Conifer" = "darkgreen")) +
+  
+  labs(title="Current 'Natural' Group Vegetation for the State of MI", y="Acres", x="") +
+  theme(legend.position="none")
+ 
+gEVTGroups
+```
+
+## Insert Data Table (uses 'DT' library)
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+datatable(EVTnatArranged,
+          class = 'cell-border stripe',
+          filter = 'top', 
+          options = list(pageLength = 5, autoWidth = TRUE))
+```
+
+
+
+
+

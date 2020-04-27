@@ -1,0 +1,253 @@
+---
+title: "MichiExploration"
+author: "Laura Slavsky"
+date: "4/20/2020"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+
+```{r echo=FALSE}
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(scales)
+library(DT)
+library(knitr)
+```
+
+# Michigamme Highlands Ecosystem Exploration
+
+```{r echo=FALSE}
+knitr::include_graphics("Trees.jpg")
+```
+
+## Questions for Exploration:
+#### The main quesiton being explored in this document is: **How much of the Michigamme Highlands (MH) is in good versus bad condition?** The Data explored, provided by Randy Swaty, include over 90,000 rows and were formed by combining:
+* LANDFIRE ReMap (version 200), Existing Vegetation Cover, Height and Type (evc, evh and evt)
+* LANDFIRE 2012 (version 130) Biophysical Settings
+* Michigamme Highlands raster (converted from polygon supplied by Emily Clegg)
+
+
+#### This document has the following goals:
+
+* Provide basic graphics and interpretations of the Michigamme Highlands by:
++ Comparing past and present acres per ecosystem
++ Identifying degraded lands
++ Summarizing conditions of existing cover, height and type
++ Other
+
+#### This document is intended to be a start for looking into the Michigamme Highlands, and upon further inspection/analysis can be used to delve further into new questions or edited to information pertinent to those who need it. This dataset is also best for looking at the big picture, and not at specific geographic areas - that can be done with map data. Happy Reading! 
+
+
+```{r echo=FALSE}
+knitr::include_graphics("View.jpg")
+```
+
+
+## Background & Brief Definitions: What is BPS? & EVT? What's the difference between Group Names & Names?
+
+#### It is important to understand some key terms when analyzing the data for the Michigamme Highlands. Please consult the brief definitions below before embarking onto the data visualizations. 
+
+### BPS - Biophysical Settings - Historic
+#### BPS stands for Biophysical Settings. BPS data is what vegetation historically dominated landscapes prior to Euro-American settlement - the ecosystems that were once in a given area. This is estimated accoridng to LANDFIRE.GOV by "the current biophysical environment and an approximation of the historical disturbance regime".
+
+### EVT - Existing Vegetation Type - Current
+#### EVT stands for Existing Vegetation Type and includes "the current distribution of the terrestrial ecological systems classification" (LANDFIRE). EVT data is from 2016 and represents current ecosystems. 
+
+#### So a quick recap: **BPS = Historic, EVT = Current**
+
+### Group Names and Names
+#### The data includes both "Group Names" and "Names". Names have more specified ecosystem types such as "Laurentian Jack Pine-Red Pine Forest" and "Laurentian-Acadian Sub-boreal Mesic Balsam Fir-Spruce Forest". This means, for example, that two groups that are both Hardwoods may have different names given to them, making looking at the bigger picture of ecosystem types and change over time difficult. 
+
+#### Therefore, "Group Names" are also assigned to the data, allowing larger-scale comparisons of all "Hardwoods", "Conifer", "Riparian", etc. This allows for more effective data visualization of the MH. 
+
+#### Quick recap: **Group Names = Overall Ecosystem Type, Names = Specified Ecosystem**
+
+```{r echo=FALSE}
+knitr::include_graphics("McCormickWilderness.jpg")
+```
+
+
+
+### The remainder of this document contains different data visualizations using the data from both BPS and EVT ecosystems. Descriptions are provided to give context and interpretation of each graph. 
+
+
+
+### First, let's start with looking how group ecosystems have changed over time, starting with BPS (Historic).
+
+#### The four most common ecosystems in the MH were Hardwood, Riparian, Conifer, and Hardwood-Conifer. These are the combined Group Names. Hardwoods occupied just under half, 47.9%, of the area. Open water was removed from the groups and Barren-Rock/Sand/Clay which occupied half of one percent of the historic area. 
+
+```{r fix up da BpS group data}
+Michi <- read.csv("michiAllClean.csv")
+
+# Let's make that in descending order
+Michi_Arr <- arrange(Michi, desc(ACRES))
+
+BPS_GP_ACRES <- Michi %>% #Creating new dataframe with just BPS_GP_NAME and ACRES
+  group_by(BPS_GP_NAME) %>% 
+  summarise(ACRES = sum(ACRES))
+BPS_GP_ACRES
+
+GP_ACRES_Arr <- arrange(BPS_GP_ACRES, desc(ACRES))
+
+# Now, to only take the top 4 rows (IE not Open H20 or Barren)
+GP_ACRES_CHOP <- GP_ACRES_Arr[c(1:4),]
+
+```
+
+
+
+
+```{r echo=FALSE}
+GP_ACRES_Arr <- arrange(BPS_GP_ACRES, desc(ACRES))
+
+# Now, to only take the top 4 rows (IE not Open H20 or Barren)
+GP_ACRES_CHOP <- GP_ACRES_Arr[c(1:4),]
+
+ggplot(GP_ACRES_CHOP, aes(x = reorder(BPS_GP_NAME, ACRES), y = ACRES)) + 
+  geom_bar(stat = "identity", fill = "grey") +
+  coord_flip() +
+
+  ggtitle("BPS Group Ecosystems of the MH") +
+  labs(x = "", y = "Acres") +
+  scale_y_continuous(labels = comma) +
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+        #panel.background = element_blank(), axis.line = element_line(colour = "black"))
+```
+
+
+
+#### Next, looking at the current (EVT) ecosystem groups:
+
+### There are several more ecosystems currently represented in the Michigamme Highlands compared to the BPS data, even at the group level. The majority of the MH are still hardwood, represented by the "Yellow Birch-Sugar Maple Forest" with over 330,000 acres (__%) throughout dominated by this ecosytem group. There are also other types of hardwood forests such as Pine-Hemlock & Spruce-Fir represented. 
+
+
+```{r fix up da EVT group data}
+EVT_GP_ACRES <- Michi %>% #Creating new dataframe with just EVT_200_GP_NAME and ACRES
+  group_by(EVT_200_GP_NAME) %>% 
+  summarise(ACRES = sum(ACRES)) 
+EVT_GP_ACRES
+    
+#now to arrange in desc order  
+EVT_GP_Arr <- arrange(EVT_GP_ACRES, desc(ACRES))
+
+# Trim EVT to top 10
+EVT_GP_ACRES_CHOP <- EVT_GP_Arr[c(1:10),]
+
+
+```
+
+
+
+
+```{r echo=FALSE}
+ggplot(EVT_GP_ACRES_CHOP, aes(x = reorder(EVT_200_GP_NAME, ACRES), y = ACRES)) + 
+  geom_bar(stat = "identity", fill = "grey") +
+  coord_flip() +
+  
+  ggtitle("EVT Group Ecosystems of the MH") +
+  labs(x = "", y = "Acres") +
+  scale_y_continuous(labels = comma) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"))
+```
+(Might need to change cut off it <5%? - percent isn't working...)
+
+
+#### Now, let's focus in on more specific ecosystem names historically and currently in the MH, starting with BPS.
+
+###
+
+```{r fix up da BpS name data}
+
+# GRAPHING EVT AND BPS NAME INSTEAD OF GROUP NAME
+# Let's start with BPS
+BPS_NAME <- Michi %>% #Creating new dataframe with just BPS_NAME and ACRES
+  group_by(BPS_NAME) %>% 
+  summarise(ACRES = sum(ACRES))
+BPS_NAME
+
+# And the descenidng order:
+BPS_NAME_Desc <- arrange(BPS_NAME, desc(ACRES))
+BPS_NAME_Desc
+
+
+# Top 11 (10 and 11 look equal so putting at 11 for now)
+BPS_NAME_CHOP <- BPS_NAME_Desc[c(1:11),]
+
+```
+
+```{r echo=FALSE}
+ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) + 
+  geom_bar(stat = "identity", fill = "grey") +
+  coord_flip() +
+  
+  ggtitle("Top 11 BPS Names") +
+  labs(x = "", y = "Acres") +
+  scale_y_continuous(labels = comma) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"))
+```
+(Again change to cutoff at <5%?)
+
+
+```{r fix up da EVT name data}
+EVT_200_NAME <- Michi %>% #Creating new dataframe with just EVT_200_NAME and ACRES
+  group_by(EVT_200_NAME) %>% 
+  summarise(ACRES = sum(ACRES))
+EVT_200_NAME
+
+# And the descenidng order:
+EVT_200_NAME_Desc <- arrange(EVT_200_NAME, desc(ACRES))
+EVT_200_NAME_Desc
+
+
+# AHH! Too many to see! Let's narrow to 35 and see what we get. Might need to do more than that.
+EVT_35 <- EVT_200_NAME_Desc[c(1:35),]
+
+
+# Let's make it top 12 (?) Seems somewhat arbitrary but at a dropoff point
+EVT_NAME_CHOP <- EVT_35[c(1:12),]
+
+```
+
+
+
+```{r echo=FALSE}
+ggplot(EVT_NAME_CHOP, aes(x = reorder(EVT_200_NAME, ACRES), y = ACRES)) + 
+  geom_bar(stat = "identity", fill = "grey") +
+  coord_flip() +
+  
+  ggtitle("Top 12 EVT Names") +
+  labs(x = "", y = "Acres") +
+  scale_y_continuous(labels = comma) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

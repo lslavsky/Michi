@@ -1,0 +1,52 @@
+---
+title: "Untitled"
+author: "Laura Slavsky"
+date: "4/17/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readr)
+evh_reclass <- read_csv("evh-reclass.csv")
+View(evh_reclass)
+```
+
+
+```{r}
+library(readr)
+evc_reclass <- read_csv("evc-reclass.csv")
+View(evc_reclass)
+```
+
+```{r}
+MichiEVC <- merge(Michi, evc_reclass, by.x = "EVC_200", by.y = "CLASSNAMES")
+```
+
+
+```{r}
+MichiEVH <- merge(Michi, evh_reclass, by.x = "EVH_200", by.y = "CLASSNAMES")
+```
+
+
+```{r}
+write.csv(MichiEVC, file = "MichiEVC.csv")
+```
+
+```{r}
+write.csv(MichiEVH, file = "MichiEVH.csv")
+```
+
+
+
+
+
+
+
+
+
+
+

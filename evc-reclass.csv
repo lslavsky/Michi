@@ -1,0 +1,199 @@
+VALUE,CLASSNAMES,RECLASS
+31,Barren,Sparse/Barren
+24,Developed - High Intensity,Developed
+22,Developed - Low Intensity,Developed
+23,Developed - Medium Intensity,Developed
+25,Developed-Roads,Developed
+13,Developed-Upland Deciduous Forest,Developed
+14,Developed-Upland Evergreen Forest,Developed
+16,Developed-Upland Herbaceous,Developed
+15,Developed-Upland Mixed Forest,Developed
+17,Developed-Upland Shrubland,Developed
+310,Herb Cover = 10%,Herb Cover 10-15%
+311,Herb Cover = 11%,Herb Cover 10-15%
+312,Herb Cover = 12%,Herb Cover 10-15%
+313,Herb Cover = 13%,Herb Cover 10-15%
+314,Herb Cover = 14%,Herb Cover 10-15%
+315,Herb Cover = 15%,Herb Cover 10-15%
+316,Herb Cover = 16%,Herb Cover 16-20%
+317,Herb Cover = 17%,Herb Cover 16-20%
+318,Herb Cover = 18%,Herb Cover 16-20%
+319,Herb Cover = 19%,Herb Cover 16-20%
+320,Herb Cover = 20%,Herb Cover 16-20%
+321,Herb Cover = 21%,Herb Cover 21-30%
+322,Herb Cover = 22%,Herb Cover 21-30%
+323,Herb Cover = 23%,Herb Cover 21-30%
+324,Herb Cover = 24%,Herb Cover 21-30%
+325,Herb Cover = 25%,Herb Cover 21-30%
+326,Herb Cover = 26%,Herb Cover 21-30%
+327,Herb Cover = 27%,Herb Cover 21-30%
+328,Herb Cover = 28%,Herb Cover 21-30%
+329,Herb Cover = 29%,Herb Cover 21-30%
+330,Herb Cover = 30%,Herb Cover 21-30%
+331,Herb Cover = 31%,Herb Cover 31-40%
+332,Herb Cover = 32%,Herb Cover 31-40%
+333,Herb Cover = 33%,Herb Cover 31-40%
+334,Herb Cover = 34%,Herb Cover 31-40%
+335,Herb Cover = 35%,Herb Cover 31-40%
+336,Herb Cover = 36%,Herb Cover 31-40%
+337,Herb Cover = 37%,Herb Cover 31-40%
+338,Herb Cover = 38%,Herb Cover 31-40%
+339,Herb Cover = 39%,Herb Cover 31-40%
+340,Herb Cover = 40%,Herb Cover 31-40%
+341,Herb Cover = 41%,Herb Cover 41-50%
+342,Herb Cover = 42%,Herb Cover 41-50%
+343,Herb Cover = 43%,Herb Cover 41-50%
+344,Herb Cover = 44%,Herb Cover 41-50%
+345,Herb Cover = 45%,Herb Cover 41-50%
+346,Herb Cover = 46%,Herb Cover 41-50%
+347,Herb Cover = 47%,Herb Cover 41-50%
+348,Herb Cover = 48%,Herb Cover 41-50%
+349,Herb Cover = 49%,Herb Cover 41-50%
+350,Herb Cover = 50%,Herb Cover 41-50%
+351,Herb Cover = 51%,Herb Cover = 51-60%
+352,Herb Cover = 52%,Herb Cover = 51-60%
+353,Herb Cover = 53%,Herb Cover = 51-60%
+354,Herb Cover = 54%,Herb Cover = 51-60%
+355,Herb Cover = 55%,Herb Cover = 51-60%
+356,Herb Cover = 56%,Herb Cover = 51-60%
+357,Herb Cover = 57%,Herb Cover = 51-60%
+358,Herb Cover = 58%,Herb Cover = 51-60%
+359,Herb Cover = 59%,Herb Cover = 51-60%
+360,Herb Cover = 60%,Herb Cover = 51-60%
+361,Herb Cover = 61%,Herb Cover = 61-70%
+362,Herb Cover = 62%,Herb Cover = 61-70%
+363,Herb Cover = 63%,Herb Cover = 61-70%
+364,Herb Cover = 64%,Herb Cover = 61-70%
+365,Herb Cover = 65%,Herb Cover = 61-70%
+366,Herb Cover = 66%,Herb Cover = 61-70%
+367,Herb Cover = 67%,Herb Cover = 61-70%
+368,Herb Cover = 68%,Herb Cover = 61-70%
+369,Herb Cover = 69%,Herb Cover = 61-70%
+370,Herb Cover = 70%,Herb Cover = 61-70%
+371,Herb Cover = 71%,Herb Cover = 71-80%
+372,Herb Cover = 72%,Herb Cover = 71-80%
+373,Herb Cover = 73%,Herb Cover = 71-80%
+374,Herb Cover = 74%,Herb Cover = 71-80%
+375,Herb Cover = 75%,Herb Cover = 71-80%
+376,Herb Cover = 76%,Herb Cover = 71-80%
+377,Herb Cover = 77%,Herb Cover = 71-80%
+378,Herb Cover = 78%,Herb Cover = 71-80%
+379,Herb Cover = 79%,Herb Cover = 71-80%
+380,Herb Cover = 80%,Herb Cover = 71-80%
+381,Herb Cover = 81%,Herb Cover = 81-90%
+382,Herb Cover = 82%,Herb Cover = 81-90%
+65,NASS-Close Grown Crop,Agriculture
+64,NASS-Row Crop,Agriculture
+68,NASS-Wheat,Agriculture
+11,Open Water,Water
+32,Quarries-Strip Mines-Gravel Pits-Well and Wind Pads,Developed
+210,Shrub Cover = 10%,Shrub Cover = 10-15%
+211,Shrub Cover = 11%,Shrub Cover = 10-15%
+212,Shrub Cover = 12%,Shrub Cover = 10-15%
+213,Shrub Cover = 13%,Shrub Cover = 10-15%
+214,Shrub Cover = 14%,Shrub Cover = 10-15%
+215,Shrub Cover = 15%,Shrub Cover = 10-15%
+216,Shrub Cover = 16%,Shrub Cover = 16-20%
+217,Shrub Cover = 17%,Shrub Cover = 16-20%
+218,Shrub Cover = 18%,Shrub Cover = 16-20%
+219,Shrub Cover = 19%,Shrub Cover = 16-20%
+220,Shrub Cover = 20%,Shrub Cover = 16-20%
+221,Shrub Cover = 21%,Shrub Cover = 21-30%
+222,Shrub Cover = 22%,Shrub Cover = 21-30%
+223,Shrub Cover = 23%,Shrub Cover = 21-30%
+224,Shrub Cover = 24%,Shrub Cover = 21-30%
+225,Shrub Cover = 25%,Shrub Cover = 21-30%
+226,Shrub Cover = 26%,Shrub Cover = 21-30%
+227,Shrub Cover = 27%,Shrub Cover = 21-30%
+228,Shrub Cover = 28%,Shrub Cover = 21-30%
+229,Shrub Cover = 29%,Shrub Cover = 21-30%
+230,Shrub Cover = 30%,Shrub Cover = 21-30%
+231,Shrub Cover = 31%,Shrub Cover = 31-40%
+232,Shrub Cover = 32%,Shrub Cover = 31-40%
+233,Shrub Cover = 33%,Shrub Cover = 31-40%
+234,Shrub Cover = 34%,Shrub Cover = 31-40%
+235,Shrub Cover = 35%,Shrub Cover = 31-40%
+236,Shrub Cover = 36%,Shrub Cover = 31-40%
+237,Shrub Cover = 37%,Shrub Cover = 31-40%
+238,Shrub Cover = 38%,Shrub Cover = 31-40%
+239,Shrub Cover = 39%,Shrub Cover = 31-40%
+240,Shrub Cover = 40%,Shrub Cover = 31-40%
+241,Shrub Cover = 41%,Shrub Cover 41-50%
+242,Shrub Cover = 42%,Shrub Cover 41-50%
+243,Shrub Cover = 43%,Shrub Cover 41-50%
+244,Shrub Cover = 44%,Shrub Cover 41-50%
+245,Shrub Cover = 45%,Shrub Cover 41-50%
+246,Shrub Cover = 46%,Shrub Cover 41-50%
+247,Shrub Cover = 47%,Shrub Cover 41-50%
+248,Shrub Cover = 48%,Shrub Cover 41-50%
+249,Shrub Cover = 49%,Shrub Cover 41-50%
+12,Snow/Ice,Snow/Ice
+100,Sparse Vegetation Canopy,Sparse/Barren
+110,Tree Cover = 10%,Tree Cover 10-15%
+111,Tree Cover = 11%,Tree Cover 10-15%
+112,Tree Cover = 12%,Tree Cover 10-15%
+113,Tree Cover = 13%,Tree Cover 10-15%
+114,Tree Cover = 14%,Tree Cover 10-15%
+115,Tree Cover = 15%,Tree Cover 10-15%
+116,Tree Cover = 16%,Tree Cover 16-20%
+117,Tree Cover = 17%,Tree Cover 16-20%
+118,Tree Cover = 18%,Tree Cover 16-20%
+119,Tree Cover = 19%,Tree Cover 16-20%
+120,Tree Cover = 20%,Tree Cover 16-20%
+121,Tree Cover = 21%,Tree Cover 21-30%
+122,Tree Cover = 22%,Tree Cover 21-30%
+123,Tree Cover = 23%,Tree Cover 21-30%
+124,Tree Cover = 24%,Tree Cover 21-30%
+125,Tree Cover = 25%,Tree Cover 21-30%
+126,Tree Cover = 26%,Tree Cover 21-30%
+127,Tree Cover = 27%,Tree Cover 21-30%
+128,Tree Cover = 28%,Tree Cover 21-30%
+129,Tree Cover = 29%,Tree Cover 21-30%
+130,Tree Cover = 30%,Tree Cover 21-30%
+131,Tree Cover = 31%,Tree Cover 31-40%
+132,Tree Cover = 32%,Tree Cover 31-40%
+133,Tree Cover = 33%,Tree Cover 31-40%
+134,Tree Cover = 34%,Tree Cover 31-40%
+135,Tree Cover = 35%,Tree Cover 31-40%
+136,Tree Cover = 36%,Tree Cover 31-40%
+137,Tree Cover = 37%,Tree Cover 31-40%
+138,Tree Cover = 38%,Tree Cover 31-40%
+139,Tree Cover = 39%,Tree Cover 31-40%
+140,Tree Cover = 40%,Tree Cover 31-40%
+141,Tree Cover = 41%,Tree Cover 41-50%
+142,Tree Cover = 42%,Tree Cover 41-50%
+143,Tree Cover = 43%,Tree Cover 41-50%
+144,Tree Cover = 44%,Tree Cover 41-50%
+145,Tree Cover = 45%,Tree Cover 41-50%
+146,Tree Cover = 46%,Tree Cover 41-50%
+147,Tree Cover = 47%,Tree Cover 41-50%
+148,Tree Cover = 48%,Tree Cover 41-50%
+149,Tree Cover = 49%,Tree Cover 41-50%
+150,Tree Cover = 50%,Tree Cover 41-50%
+151,Tree Cover = 51%,Tree Cover 51-60%
+152,Tree Cover = 52%,Tree Cover 51-60%
+153,Tree Cover = 53%,Tree Cover 51-60%
+154,Tree Cover = 54%,Tree Cover 51-60%
+155,Tree Cover = 55%,Tree Cover 51-60%
+156,Tree Cover = 56%,Tree Cover 51-60%
+157,Tree Cover = 57%,Tree Cover 51-60%
+158,Tree Cover = 58%,Tree Cover 51-60%
+159,Tree Cover = 59%,Tree Cover 51-60%
+160,Tree Cover = 60%,Tree Cover 51-60%
+161,Tree Cover = 61%,Tree Cover 61-70%
+162,Tree Cover = 62%,Tree Cover 61-70%
+163,Tree Cover = 63%,Tree Cover 61-70%
+164,Tree Cover = 64%,Tree Cover 61-70%
+165,Tree Cover = 65%,Tree Cover 61-70%
+166,Tree Cover = 66%,Tree Cover 61-70%
+167,Tree Cover = 67%,Tree Cover 61-70%
+168,Tree Cover = 68%,Tree Cover 61-70%
+169,Tree Cover = 69%,Tree Cover 61-70%
+170,Tree Cover = 70%,Tree Cover 61-70%
+171,Tree Cover = 71%,Tree Cover 71-80%
+172,Tree Cover = 72%,Tree Cover 71-80%
+173,Tree Cover = 73%,Tree Cover 71-80%
+174,Tree Cover = 74%,Tree Cover 71-80%
+175,Tree Cover = 75%,Tree Cover 71-80%
+176,Tree Cover = 76%,Tree Cover 71-80%
+186,Tree Cover = 86%,Tree Cover 81-90%
