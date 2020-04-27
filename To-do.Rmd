@@ -10,10 +10,18 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## 4/27/2020 
+LMS:
 
 1. Get inspired, look @ greasy drive folder o' free books, ggthemes, rmarkdown themes, etc. 
 2. Find out why tibbles are in the markdown
 3. What do I want to learn in the R Markdown? 
+
+RLS:
+
+1. Review MichiExploration.  QAQC
+2. Consider different types of charts
+3. Ask Kevin about sharing in the future.  
+4. Keep nagging Jeremy
 
 
 
