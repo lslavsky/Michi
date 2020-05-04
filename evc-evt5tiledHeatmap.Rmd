@@ -101,11 +101,12 @@ Getting close.  Need to remove grey border, change fonts (family and size), remo
 evc_th4 <-
   evc_th3 +
   theme_bw(base_size = 14) +
-  theme(legend.position = "none") +
+  #theme(legend.position = "none") +
   scale_y_discrete(limits = rev(unique(sort(evc_evt5$evt )))) +
   labs(title = "Tree canopy cover for 5 most prevalent ecosystems",
               subtitle = "",
-              caption = "LANDFIRE 2016 Existing Vegetation Cover data")
+              caption = "LANDFIRE 2016 Existing Vegetation Cover data. ") +
+  labs(fill = "Percent of \nEcosystem")
 
 evc_th4 
   
