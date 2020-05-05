@@ -33,6 +33,7 @@ library(dplyr)
 library(scales)
 library(DT)
 library(knitr)
+library(prettydoc)
 ```
 
 # Michigamme Highlands Ecosystem Exploration
