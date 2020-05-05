@@ -3,10 +3,13 @@ title: "MichiExploration"
 author: "Laura Slavsky"
 date: "4/20/2020"
 output: html_document
+theme: lumen
+code_folding: hide
 editor_options: 
   chunk_output_type: console
 ---
-
+ prettydoc::html_pretty:
+    theme: cayman
 ```{r}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 ```
@@ -92,7 +95,7 @@ Michi_Arr <- arrange(Michi, desc(ACRES))
 BPS_GP_ACRES <- Michi %>% #Creating new dataframe with just BPS_GP_NAME and ACRES
   group_by(BPS_GP_NAME) %>% 
   summarise(ACRES = sum(ACRES))
-BPS_GP_ACRES
+
 
 GP_ACRES_Arr <- arrange(BPS_GP_ACRES, desc(ACRES))
 
@@ -132,7 +135,7 @@ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 EVT_GP_ACRES <- Michi %>% #Creating new dataframe with just EVT_200_GP_NAME and ACRES
   group_by(EVT_200_GP_NAME) %>% 
   summarise(ACRES = sum(ACRES)) 
-EVT_GP_ACRES
+
     
 #now to arrange in desc order  
 EVT_GP_Arr <- arrange(EVT_GP_ACRES, desc(ACRES))
@@ -171,11 +174,10 @@ ggplot(EVT_GP_ACRES_CHOP, aes(x = reorder(EVT_200_GP_NAME, ACRES), y = ACRES)) +
 BPS_NAME <- Michi %>% #Creating new dataframe with just BPS_NAME and ACRES
   group_by(BPS_NAME) %>% 
   summarise(ACRES = sum(ACRES))
-BPS_NAME
+
 
 # And the descenidng order:
 BPS_NAME_Desc <- arrange(BPS_NAME, desc(ACRES))
-BPS_NAME_Desc
 
 
 # Top 11 (10 and 11 look equal so putting at 11 for now)
@@ -201,11 +203,10 @@ ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) +
 EVT_200_NAME <- Michi %>% #Creating new dataframe with just EVT_200_NAME and ACRES
   group_by(EVT_200_NAME) %>% 
   summarise(ACRES = sum(ACRES))
-EVT_200_NAME
+
 
 # And the descenidng order:
 EVT_200_NAME_Desc <- arrange(EVT_200_NAME, desc(ACRES))
-EVT_200_NAME_Desc
 
 
 # AHH! Too many to see! Let's narrow to 35 and see what we get. Might need to do more than that.
