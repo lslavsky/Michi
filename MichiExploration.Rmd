@@ -59,7 +59,7 @@ knitr::include_graphics("Trees.jpg")
 
 #### This document is intended to be a start for looking into the Michigamme Highlands, and upon further inspection/analysis can be used to delve further into new questions or edited to information pertinent to those who need it. 
 
-#### This dataset is best for looking at the big picture, and not at specific geographic areas - that can be done with map data. Happy Reading! 
+#### This dataset is best for looking at the big picture, and not at specific geographic areas. Happy Reading! 
 
 
 ```{r echo=FALSE}
@@ -144,7 +144,7 @@ ggplot(GP_ACRES_CHOP, aes(x = reorder(BPS_GP_NAME, ACRES), y = ACRES)) +
   geom_bar(stat = "identity", fill = "grey") +
   coord_flip() +
 
-  ggtitle("Historical Group Ecosystems of the Michigamme Highlands") +
+  ggtitle("Historical Group Ecosystems of the MH") +
   labs(x = "", y = "Acres") +
   scale_y_continuous(labels = comma) +
 theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
@@ -185,7 +185,7 @@ ggplot(EVT_GP_ACRES_CHOP, aes(x = reorder(EVT_200_GP_NAME, ACRES), y = ACRES)) +
   geom_bar(stat = "identity", fill = "grey") +
   coord_flip() +
   
-  ggtitle("Current Group Ecosystems of the Michigamme Highlands") +
+  ggtitle("Current Group Ecosystems of the MH") +
   labs(x = "", y = "Acres") +
   scale_y_continuous(labels = comma) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -194,15 +194,15 @@ ggplot(EVT_GP_ACRES_CHOP, aes(x = reorder(EVT_200_GP_NAME, ACRES), y = ACRES)) +
 
 
 ## Primary Conclusions of Group Ecosystems (Historic and Present) of the Michigamme Highlands:
-* Hardwoods compose a significant acreage of the area
-* There are few (<2% each) degraded areas such as plantations, agriculture, strip-mining, etc.
-* Though there is not much degredation, development is the 5th most common ecosystem type in the MH
+* Hardwoods used to and still compose a significant acreage of the area.
+* Currently, there are few (<2% each) degraded group ecosystems such as plantations, agriculture, strip-mining, etc.
+* Though there is not much degredation, development is the 5th most common ecosystem type in the MH today.
 
 
-
+## Ecosystem Names:
 ### Now, let's focus in on more specific **ecosystem names** historically and currently in the MH.
 
-### 
+### Historically, hardwoods made up a significant portion ()
 
 ```{r fix up da BpS name data}
 
