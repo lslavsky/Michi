@@ -185,7 +185,7 @@ ggplot(EVT_GP_ACRES_CHOP, aes(x = reorder(EVT_200_GP_NAME, ACRES), y = ACRES)) +
   geom_bar(stat = "identity", fill = "grey") +
   coord_flip() +
   
-  ggtitle("EVT Group Ecosystems of the MH") +
+  ggtitle("Current Group Ecosystems of the Michigamme Highlands") +
   labs(x = "", y = "Acres") +
   scale_y_continuous(labels = comma) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -193,14 +193,14 @@ ggplot(EVT_GP_ACRES_CHOP, aes(x = reorder(EVT_200_GP_NAME, ACRES), y = ACRES)) +
 ```
 
 
-## Conclusions of Group Ecosystems (Historic and Present) of the Michigamme Highlands:
+## Primary Conclusions of Group Ecosystems (Historic and Present) of the Michigamme Highlands:
 * Hardwoods compose a significant acreage of the area
-* There are few (<2%) degraded areas such as plantations, agriculture, strip-mining, etc. 
+* There are few (<2% each) degraded areas such as plantations, agriculture, strip-mining, etc.
 * Though there is not much degredation, development is the 5th most common ecosystem type in the MH
 
 
 
-#### Now, let's focus in on more specific ecosystem names historically and currently in the MH.
+### Now, let's focus in on more specific **ecosystem names** historically and currently in the MH.
 
 ### 
 
@@ -227,7 +227,7 @@ ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) +
   geom_bar(stat = "identity", fill = "grey") +
   coord_flip() +
   
-  ggtitle("Top 11 BPS Names") +
+  ggtitle("Historical Ecosystem Names") +
   labs(x = "", y = "Acres") +
   scale_y_continuous(labels = comma) +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
