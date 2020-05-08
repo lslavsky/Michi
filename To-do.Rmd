@@ -23,7 +23,18 @@ RLS:
 3. Ask Kevin about sharing in the future.  
 4. Keep nagging Jeremy
 
+Notes/code from Randy:
 
+users %>%
+  na.omit %>%
+    count(location, sort = TRUE) %>%
+    mutate(location = reorder(location, n)) %>%
+    top_n(20) %>%
+ggplot(aes(x = location, y = n)) +
+    geom_col() +
+    coord_flip() +
+    labs(x = "Count",
+    y = "Location", title = "Where Twitter users are from - unique locations ")
 
 
 
