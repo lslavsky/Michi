@@ -3,10 +3,13 @@ title: "Michigame Highlands Exploration"
 author: "Laura Slavsky - Conservation Data Lab"
 date: "4/20/2020"
 output:
-  prettydoc::html_pretty:
-    theme: cayman
-    highlight: github
-    toc: TRUE
+  html_document:
+    toc: true
+    toc_float:
+      toc_collapsed: true
+    toc_depth: 3
+    number_sections: FALSE
+    theme: lumen
 code_folding: hide
 editor_options: 
   chunk_output_type: console
@@ -36,7 +39,6 @@ library(dplyr)
 library(scales)
 library(DT)
 library(knitr)
-library(prettydoc)
 library(plotly)
 ```
 
@@ -44,8 +46,8 @@ library(plotly)
 
 (Put photo of map here)
 
-## Questions for Exploration:
-The main quesiton being explored in this document is: **How much of the Michigamme Highlands (MH) is in good versus bad condition?** The Data explored, provided by Randy Swaty, include over 90,000 rows and were formed by combining:
+# Questions for Exploration:
+The main quesiton being explored in this document is: **How much of the Michigamme Highlands (MH) is in "good" versus "bad" condition?** The Data explored, provided by Randy Swaty, include over 90,000 rows and were formed by combining:
 
 * LANDFIRE ReMap (version 200), Existing Vegetation Cover, Height and Type (evc, evh and evt)
 * LANDFIRE 2012 (version 130) Biophysical Settings
@@ -58,11 +60,9 @@ This document has the following goals:
 * Comparing past and present acres per ecosystem
 * Identifying degraded lands
 * Summarizing conditions of existing cover, height and type
-* Other
 
-This document is intended to be a start for looking into the Michigamme Highlands, and upon further inspection/analysis can be used to delve further into new questions or edited to information pertinent to those who need it. 
 
-This dataset is best for looking at the big picture, and not at specific geographic areas. Happy Reading! 
+This dataset is best for looking at the big picture, and **not** at specific geographic areas. Happy Reading! 
 
 
 ```{r echo=FALSE}
@@ -70,9 +70,9 @@ knitr::include_graphics("View.jpg")
 ```
 
 
-## Background & Brief Definitions: 
+# Background & Brief Definitions 
 
-What is BPS? & EVT? What's the difference between Group Names & Names?
+## What is BPS? & EVT? 
 
 It is important to understand some key terms when analyzing the data for the Michigamme Highlands. Please consult the brief definitions below before embarking onto the data visualizations. 
 
@@ -86,7 +86,7 @@ EVT stands for Existing Vegetation Type and includes "the current distribution o
 
 **BPS = Historic, EVT = Current**. The remainder of this document will use "Historic" and "Current" as the main means of referencing these data. 
 
-Group Names and Names:
+## Group Names and Names
 
 The data include both "Group Names" and "Names". "Names" have more specified ecosystem types such as:
 
@@ -108,9 +108,9 @@ knitr::include_graphics("McCormickWilderness.jpg")
 
 The remainder of this document contains different data visualizations using the data from both BPS and EVT ecosystems. Descriptions are provided to give context and interpretation of each graph. 
 
-Each graph can be "hovered" over with a mouse to see total acres for the given Group Ecosystem or Name. 
+# Bigger Picture: Group Names
 
-# Graphs and Beginning Interpretations of the Michigamme Highlands:
+## Historical Group Names 
 
 First, let's start with looking how **group ecosystems** have changed over time.
 
@@ -146,7 +146,7 @@ GP_ACRES_Arr <- arrange(BPS_GP_ACRES, desc(ACRES))
 
 # Now, to only take the top 4 rows (IE not Open H20 or Barren)
 GP_ACRES_CHOP <- GP_ACRES_Arr[c(1:4),]
-hist_grp <- 
+
 ggplot(GP_ACRES_CHOP, aes(x = reorder(BPS_GP_NAME, ACRES), y = ACRES)) + 
   geom_bar(stat = "identity", fill = "grey") +
   coord_flip() +
@@ -156,13 +156,10 @@ ggplot(GP_ACRES_CHOP, aes(x = reorder(BPS_GP_NAME, ACRES), y = ACRES)) +
   scale_y_continuous(labels = comma) +
 theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black"))
-        #panel.background = element_blank(), axis.line = element_line(colour = "black"))
-ggplotly(hist_grp)
-
+        
 ```
 
-
-
+## Current Group Names
 Next, looking at the current (EVT) Group Names of the Michigamme Highlands:
 
 There are several more ecosystems currently represented in the Michigamme Highlands compared to the BPS data, even at the group level. The majority of the MH are still hardwood, represented by the "Yellow Birch-Sugar Maple Forest" with over 330,000 acres (44%) in this group. 
@@ -177,17 +174,12 @@ EVT_GP_ACRES <- Michi %>% #Creating new dataframe with just EVT_200_GP_NAME and 
   group_by(EVT_200_GP_NAME) %>% 
   summarise(ACRES = sum(ACRES)) 
 
-    
 #now to arrange in desc order  
 EVT_GP_Arr <- arrange(EVT_GP_ACRES, desc(ACRES))
 
 # Trim EVT to top 10
 EVT_GP_ACRES_CHOP <- EVT_GP_Arr[c(1:10),]
-
-
 ```
-
-
 
 
 ```{r echo=FALSE}
@@ -203,21 +195,21 @@ ggplot(EVT_GP_ACRES_CHOP, aes(x = reorder(EVT_200_GP_NAME, ACRES), y = ACRES)) +
 #ggplotly(hist_evt_grp)
 ```
 
-
-Primary Conclusions of Group Ecosystems (Historic and Present) of the Michigamme Highlands:
+## Group Names Recap
 
 * Hardwoods used to and still compose a significant acreage of the area.
 * Currently, there are few (<2% each) degraded group ecosystems such as plantations, agriculture, strip-mining, etc.
 * Though there is not much degredation, development is the 5th most common ecosystem type in the MH today.
 
 
-## Ecosystem Names:
+# More Detailed: Ecosystem Names
 
 Now, let's focus in on more specific **ecosystem names** historically and currently in the MH.
 
+## Historical Ecosystem Names
 Historically, hardwoods made up a significant portion (59.6%) of the Michigamme Highlands, with Laurentian-Acadian Northern Hardwoods, Northern Hardwoods - Hemlock, and Pine-Hemlock-Hardwood forest being the top three named ecosystems. 
 
-Any Ecosystem Name representing <2% of the total acerage was omitted from the following graph. 
+Any ecosystem name <2% of the total acreage was omitted from the following graph.
 
 ```{r fix up da BpS name data}
 
@@ -250,6 +242,7 @@ ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) +
 
 ```
 
+## Current Ecosystem Names
 There are 75 named ecosystems for the current (EVT) data of the Michigamme Highlands. However, all ecosystems beyond the top 9 compose less than 2% each of the MH, so have been omitted from the graph. 
 
 ```{r fix up da EVT name data}
@@ -272,7 +265,7 @@ EVT_NAME_CHOP <- EVT_200_NAME_Desc[c(1:9),]
 
 ```
 
-
+This final histogram shows the top nine current ecosystem names in the MH. Any ecosystem name <2% of the total acreage was omitted from the following graph.
 
 ```{r echo=FALSE}
 ggplot(EVT_NAME_CHOP, aes(x = reorder(EVT_200_NAME, ACRES), y = ACRES)) + 
@@ -287,7 +280,14 @@ ggplot(EVT_NAME_CHOP, aes(x = reorder(EVT_200_NAME, ACRES), y = ACRES)) +
 #ggplotly(hist_grp)
 ```
 
+## Ecosystem Names Recap
 
+(Write a recap here)
+
+
+# Existing Vegetation Height & Cover
+
+Current LANDFIRE data has data on existing vegetation height and cover. 
 
 
 
