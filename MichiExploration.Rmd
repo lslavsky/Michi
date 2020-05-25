@@ -11,7 +11,15 @@ code_folding: hide
 editor_options: 
   chunk_output_type: console
 ---
-
+<style>
+body {
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 15px;
+    line-height: 1.42857143;
+    color: #000000;
+    background-color: #ffffff;
+}
+</style>
 
 ```{r global_options, include=FALSE}
 # From Internet:
