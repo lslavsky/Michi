@@ -7,7 +7,9 @@ library(ggplot2)
 evh_evt5 <- read_csv("evh_evt5.csv", col_types = cols(percent = col_number()))
 
 # order EVHs
-evh_evt5$evt  <- factor(evh_evt5$evt, levels = c("Northern Hardwoods Forest","Alkaline Conifer-Hardwood Swamp", "Conifer Acidic Swamp and Treed Poor Fen", "Mesic Balsam Fir-Spruce Forest", "Pine-Hemlock Forest"))
+evh_evt5$evt  <- factor(evh_evt5$evt, levels = c("Northern Hardwoods Forest","Alkaline Conifer-Hardwood Swamp", "Conifer Acidic Swamp and Treed Poor Fen", "Mesic Balsam Fir-Spruce Forest", "Pine-Hemlock-Hardwood Forest"))
+
+# I think line 10 is where you "lost" the Pine-Hemlock Forest?  It has a typo and should be "Pine-Hemlock-Hardwood Forest".  I changed it to try.  
 
 evh_evt5[order(evh_evt5$evt), ]
 
