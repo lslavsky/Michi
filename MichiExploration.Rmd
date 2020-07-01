@@ -26,7 +26,7 @@ body {
 
 ```{r global_options, include=FALSE}
 # From Internet:
-knitr::opts_chunk$set(fig.width=8, fig.height=6, fig.path='Figs/',
+knitr::opts_chunk$set(fig.width=10, fig.height=6, fig.path='Figs/',
                       echo=FALSE, warning=FALSE, message=FALSE)
 
 ```
@@ -42,27 +42,26 @@ library(knitr)
 library(plotly)
 ```
 
-# **Michigamme Highlands Ecosystem Exploration**
 
 (Put photo of map here)
 
 # Questions for Exploration:
-The main quesiton being explored in this document is: **How much of the Michigamme Highlands (MH) is in "good" versus "bad" condition?** The Data explored, provided by Randy Swaty, include over 90,000 rows and were formed by combining:
+This document explores the question: **What are the conditions of the ecosystems of the Michigamme Highlands?** The data examined, provided by Randy Swaty, include over 90,000 rows and were formed by combining:
 
 * LANDFIRE ReMap (version 200), Existing Vegetation Cover, Height and Type (evc, evh and evt)
 * LANDFIRE 2012 (version 130) Biophysical Settings
 * Michigamme Highlands raster (converted from polygon supplied by Emily Clegg)
 
 
-This document has the following goals:
+This document:
 
-* Provide basic graphics and interpretations of the Michigamme Highlands by:
+* Provides basic graphics and interpretations of the Michigamme Highlands by:
 * Comparing past and present acres per ecosystem
 * Identifying degraded lands
 * Summarizing conditions of existing cover, height and type
 
 
-This dataset is best for looking at the big picture, and **not** at specific geographic areas. Happy Reading! 
+This document is an **introductory** look at the Michigamme Highlands and **not** an in-depth analysis of the area. 
 
 
 ```{r echo=FALSE}
@@ -74,7 +73,7 @@ knitr::include_graphics("View.jpg")
 
 ## What is BPS? & EVT? 
 
-It is important to understand some key terms when analyzing the data for the Michigamme Highlands. Please consult the brief definitions below before embarking onto the data visualizations. 
+Please consult the brief definitions below before embarking onto the data visualizations. It is important to understand some key terms when analyzing the data for the MH.  
 
 BPS = Biophysical Settings - Historic
 
@@ -97,7 +96,7 @@ The data include both "Group Names" and "Names". "Names" have more specified eco
 
 This means, for example, that two groups that are both Hardwoods may have different names given to them, making looking at the bigger picture of ecosystem types and change over time difficult. 
 
-Therefore, "Group Names" are also assigned to the data, allowing larger-scale comparisons of all "Hardwoods", "Conifer", "Riparian", etc. This allows for more effective data visualization of the Michigamme Highlands. 
+As a result, "Group Names" are also assigned to the data, allowing larger-scale comparisons of all "Hardwoods", "Conifer", "Riparian", etc. 
 
 **Group Names = Overall Ecosystem Type, Names = Specified Ecosystem** 
 
@@ -199,7 +198,7 @@ ggplot(EVT_GP_ACRES_CHOP, aes(x = reorder(EVT_200_GP_NAME, ACRES), y = ACRES)) +
 
 * Hardwoods used to and still compose a significant acreage of the area.
 * Currently, there are few (<2% each) degraded group ecosystems such as plantations, agriculture, strip-mining, etc.
-* Though there is not much degredation, development is the 5th most common ecosystem type in the MH today.
+* Though there is not much degredation, development is the 5th most common group ecosystem in the MH today.
 
 
 # More Detailed: Ecosystem Names
@@ -211,7 +210,7 @@ Historically, hardwoods made up a significant portion (59.6%) of the Michigamme 
 
 Any ecosystem name <2% of the total acreage was omitted from the following graph.
 
-```{r fix up da BpS name data}
+```{r fix up da BpS name data, echo=FALSE}
 
 # GRAPHING EVT AND BPS NAME INSTEAD OF GROUP NAME
 # Let's start with BPS
@@ -245,7 +244,7 @@ ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) +
 ## Current Ecosystem Names
 There are 75 named ecosystems for the current (EVT) data of the Michigamme Highlands. However, all ecosystems beyond the top 9 compose less than 2% each of the MH, so have been omitted from the graph. 
 
-```{r fix up da EVT name data}
+```{r fix up da EVT name data, echo=FALSE}
 EVT_200_NAME <- Michi %>% #Creating new dataframe with just EVT_200_NAME and ACRES
   group_by(EVT_200_NAME) %>% 
   summarise(ACRES = sum(ACRES))
@@ -282,28 +281,129 @@ ggplot(EVT_NAME_CHOP, aes(x = reorder(EVT_200_NAME, ACRES), y = ACRES)) +
 
 ## Ecosystem Names Recap
 
-(Write a recap here)
+Looking at more specified ecosystem names, the top ecosystem of Laurentian-Acadian Northern Hardwoods Forest is the same for both historic and current ecosystems. From there however, there are some siginificant differences in what ecosytems are present today.
 
+There are less conifer & hemlock ecosystems than historically present, and there are more aspen/birch ecosystems now (primary successional species) compared to historically. Developed roads make it into the top 9 ecosystems composing 2.1% of the Michigamme Highlands. 
+
+Peatlands compose less than 2% of the MH where historically they were fourth most prevalant ecosystem. 
+
+Development, recently logged areas, mining, agriculture, and other modern-day disturbances compose less than 2% of the MH each, but are present in the MH today. 
 
 # Existing Vegetation Height & Cover
 
-Current LANDFIRE data has data on existing vegetation height and cover. 
+The last components of the Michigamme Highlands we will look at in this document are existing vegetation height and existing vegetation cover. This data is provided by the LANDFIRE database of current ecosystems. 
+
+## Existing Vegetation Cover (EVC)
+
+For looking at EVC & EVH, we decided to create "heatmaps". R-Graph-Gallery describes a heatmap as "a graphical representation of data where the individual values contained in a matrix are represented as colors." The darker the color 
+
+```{r echo=FALSE}
+evc_evt5 <- read_csv("evc_evt5.csv", col_types = cols(percent = col_number()))
+
+
+# order EVTs
+evc_evt5$evt  <- factor(evc_evt5$evt, levels = c("Northern Hardwoods Forest","Alkaline Conifer-Hardwood Swamp", "Conifer Acidic Swamp and Treed Poor Fen", "Mesic Balsam Fir-Spruce Forest", "Pine-Hemlock Forest"))
+
+evc_evt5[order(evc_evt5$evt), ]
+
+# make lables
+evt_labels <- c("Pine-Hemlock Forest (35,820ac)",
+                "Mesic Balsam Fir-Spruce Forest (36,791ac)",
+                "Conifer Acidic Swamp and Treed Poor Fen (44,560ac)",
+                "Alkaline Conifer-Hardwood Swamp (52,118ac)", 
+                "Northern Hardwoods Forest (332,434ac)")
 
 
 
+#plot
+evc_th1 <-  ggplot(evc_evt5 ,aes(x=cover_percent ,y=evt ,fill=percent))+
+  geom_tile(colour="white",size=0.25)+
+  scale_fill_gradient(low="white", high="darkgreen") +
+  scale_x_continuous(breaks = seq(from = 0, to = 100, by = 10)) +
+  labs(x="Canopy Cover (0-100%)",y="")+
+  scale_y_discrete(expand=c(0,0))+
+
+    theme_bw(base_size = 14) +
+    #theme(legend.position = "none") +
+    scale_y_discrete(limits = rev(unique(sort(evc_evt5$evt ))), labels= evt_labels,) +
+    labs(title = "Tree canopy cover for 5 most prevalent ecosystems",
+         subtitle = "",
+         caption = "LANDFIRE 2016 Existing Vegetation Cover data. ") +
+    labs(fill = "Percent of \nEcosystem")
+  #theme options
+  theme(
+    #bold font for legend text
+    legend.text=element_text(face="bold"),
+    #set thickness of axis ticks
+    axis.ticks=element_line(size=0.4),
+    #remove plot background
+    plot.background=element_blank(),
+    #remove plot border
+    panel.border=element_blank())+
+    theme(plot.caption = element_text(hjust = 0, face= "italic"), #Default is hjust=1
+          plot.title.position = "plot", #NEW parameter. Apply for subtitle too.
+          plot.caption.position =  "plot")
+
+evc_th1
+
+```
 
 
+## Existing Vegetation Height (EVH)
 
+```{r echo=FALSE}
+evh_evt5 <- read_csv("evh_evt5.csv", col_types = cols(percent = col_number()))
 
+evh_evt5$evt  <- factor(evh_evt5$evt, levels = c("Northern Hardwoods Forest","Alkaline Conifer-Hardwood Swamp", "Conifer Acidic Swamp and Treed Poor Fen", "Mesic Balsam Fir-Spruce Forest", "Pine-Hemlock-Hardwood Forest"))
 
+evh_evt5[order(evh_evt5$evt), ]
 
+# make lables
+evh_labels <- c("Pine-Hemlock Forest (35,820ac)",
+                "Mesic Balsam Fir-Spruce Forest (36,791ac)",
+                "Conifer Acidic Swamp and Treed Poor Fen (44,560ac)",
+                "Alkaline Conifer-Hardwood Swamp (52,118ac)", 
+                "Northern Hardwoods Forest (332,434ac)")
 
+```
 
+```{r echo=FALSE}
+#plot
+evh_th1 <- ggplot(evh_evt5 ,aes(x=height ,y=evt ,fill=percent))+
 
+  geom_tile(colour="white",size=0.25)+
+ 
+  scale_fill_gradient(low="white", high="purple4") +
+  scale_x_continuous(breaks = seq(from = 0, to = 100, by = 10)) +
+  labs(x="Canopy Height (Meters)",y="")+
+  scale_y_discrete(expand=c(0,0))+
+ 
+  theme_bw(base_size = 14) +
+  #theme(legend.position = "none") +
+  scale_y_discrete(limits = rev(unique(sort(evh_evt5$evt ))), labels= evt_labels,) +
+  labs(title = "Tree canopy height for 5 most prevalent ecosystems",
+       subtitle = "",
+       caption = "LANDFIRE 2016 Existing Vegetation Height data. ") +
+  labs(fill = "Percent of \nEcosystem")
+#theme options
+theme(
+  #bold font for legend text
+  legend.text=element_text(face="bold"),
+  #set thickness of axis ticks
+  axis.ticks=element_line(size=0.4),
+  #remove plot background
+  plot.background=element_blank(),
+  #remove plot border
+  panel.border=element_blank())+
+  theme(plot.caption = element_text(hjust = 0, face= "italic"), #Default is hjust=1
+        plot.title.position = "plot", #NEW parameter. Apply for subtitle too.
+        plot.caption.position =  "plot")
 
+evh_th1
+```
 
+# Conclusions
 
+The Michigamme Highlands are diverse wiht varying ecosystem types throughout. 
 
-
-
-
+The end.
