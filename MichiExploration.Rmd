@@ -304,7 +304,7 @@ Each ecosystem comprises "100%" of the canopy cover percentage, so each ecosyste
 ## Existing Vegetation Cover (EVC)
 
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide', fig.keep='all'}
 evc_evt5 <- read_csv("evc_evt5.csv", col_types = cols(percent = col_number()))
 
 
