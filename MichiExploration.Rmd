@@ -4,15 +4,18 @@ author: "Laura Slavsky - Conservation Data Lab"
 date: "4/20/2020"
 output:
   html_document:
-    toc: true
-    toc_float:
-      toc_collapsed: true
-    toc_depth: 3
-    number_sections: FALSE
+    number_sections: no
     theme: lumen
-code_folding: hide
-editor_options: 
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      toc_collapsed: yes
+  word_document:
+    toc: yes
+    toc_depth: '3'
+editor_options:
   chunk_output_type: console
+code_folding: hide
 ---
 <style>
 body {
