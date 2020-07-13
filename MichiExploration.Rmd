@@ -139,6 +139,7 @@ GP_ACRES_Arr <- arrange(BPS_GP_ACRES, desc(ACRES))
 GP_ACRES_CHOP <- GP_ACRES_Arr[c(1:4),]
 ```
 
+<br>
 
 ```{r echo=FALSE}
 GP_ACRES_Arr <- arrange(BPS_GP_ACRES, desc(ACRES))
