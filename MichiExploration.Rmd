@@ -1,6 +1,6 @@
 ---
 title: "Michigame Highlands Exploration"
-author: "Laura Slavsky - Conservation Data Lab"
+author: "Laura Slavsky and Randy Swaty- Conservation Data Lab"
 date: "4/20/2020"
 output:
   html_document:
@@ -45,25 +45,18 @@ library(plotly)
 ```
 
 
-(Put photo of map here)
+# This document...
+Explores vegetation conditions of the Michigamme Highlands ecoregion of the Upper Peninsula of Michigan to inform future conservation efforts there.  Here we:
 
-# Questions for Exploration:
-This document explores the question: **What are the conditions of the ecosystems of the Michigamme Highlands?** The data examined, provided by Randy Swaty, include over 90,000 rows and were formed by combining:
+* Provide basic graphics and interpretations of the Michigamme Highlands vegetation, past and present,
+* Identify degraded lands on Northern Hardwoods sites,
+* Summarize conditions of existing cover, height and type
 
-* LANDFIRE ReMap (version 200), Existing Vegetation Cover, Height and Type (evc, evh and evt)
-* LANDFIRE 2012 (version 130) Biophysical Settings
-* Michigamme Highlands raster (converted from polygon supplied by Emily Clegg)
+For this assessment we clipped LANDFIRE's Biophysical Settings (BpS, represents historical ecosystems), Existing Vegetation Cover, Height and Type (EVC, EVH and EVT, ReMap version, ca 2016) to the Michigamme Highlands polygon supplied by Emily Clegg.
 
+For more information on LANDFIRE and the datasets please visit www.landfire.gov. 
 
-This document:
-
-* Provides basic graphics and interpretations of the Michigamme Highlands by:
-* Comparing past and present acres per ecosystem
-* Identifying degraded lands
-* Summarizing conditions of existing cover, height and type
-
-
-This document is an **introductory** look at the Michigamme Highlands and **not** an in-depth analysis of the area. 
+This document is **introductory** look at the Michigamme Highlands and **not** an in-depth analysis of the area. 
 
 
 ```{r echo=FALSE}
@@ -71,19 +64,27 @@ knitr::include_graphics("View.jpg")
 ```
 
 
+<br> 
+
 # Background & Brief Definitions 
 
-## What is BPS? & EVT? 
+## Location and significance
+The Michigamme Highlands of the central Upper Peninsula of MI are "known for containing a diverse range of habitats and the Reserve is a good example. Forests, wetlands, lakes, rivers and rock outcroppings all connect together in a beautifully pristine area" (see more about conservation there at https://www.nature.org/en-us/get-involved/how-to-help/places-we-protect/wilderness-lakes-reserve/).  
+
+The dynamics of land ownership there present ongoing opportunities for protection and ecologically focused management.
+
+
+```{r echo=FALSE}
+knitr::include_graphics("michilocator.png")
+```
+
+## What is BpS? & EVT? 
 
 Please consult the brief definitions below before embarking onto the data visualizations. It is important to understand some key terms when analyzing the data for the MH.  
 
-BPS = Biophysical Settings - Historic
+BpS = Biophysical Settings: the data essentially represents vegetation that historically dominated landscapes prior to Euro-American settlement - the ecosystems that were once in a given area based on "the current biophysical environment and an approximation of the historical disturbance regime" (https://www.landfire.gov/bps.php).
 
-BPS stands for Biophysical Settings. BPS data is what vegetation historically dominated landscapes prior to Euro-American settlement - the ecosystems that were once in a given area. This is estimated accoridng to LANDFIRE.GOV by "the current biophysical environment and an approximation of the historical disturbance regime".
-
-EVT = Existing Vegetation Type - Current
-
-EVT stands for Existing Vegetation Type and includes "the current distribution of the terrestrial ecological systems classification" (LANDFIRE). EVT data is from 2016 and represents current ecosystems. 
+EVT = Existing Vegetation Type represents "the current distribution of the terrestrial ecological systems classification" (https://www.landfire.gov/evt.php).  
 
 **BPS = Historic, EVT = Current**. The remainder of this document will use "Historic" and "Current" as the main means of referencing these data. 
 
