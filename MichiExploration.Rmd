@@ -29,8 +29,7 @@ body {
 
 ```{r global_options, include=FALSE}
 # From Internet:
-knitr::opts_chunk$set(fig.width=10, fig.height=6, fig.path='Figs/',
-                      echo=FALSE, warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(fig.width=12, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE)
 
 ```
 
@@ -151,16 +150,18 @@ GP_ACRES_Arr <- arrange(BPS_GP_ACRES, desc(ACRES))
 GP_ACRES_CHOP <- GP_ACRES_Arr[c(1:4),]
 
 ggplot(GP_ACRES_CHOP, aes(x = reorder(BPS_GP_NAME, ACRES), y = ACRES)) + 
-  geom_bar(stat = "identity", fill = "grey") +
+  geom_bar(stat = "identity", fill = "grey31") +
   coord_flip() +
 
   ggtitle("Historical Group Ecosystems of the MH") +
-  labs(x = "", y = "Acres") +
+  labs(x = "", y = "Acres", colour = "black") +
   scale_y_continuous(labels = comma) +
-theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+theme(plot.title = element_text(size = 20), axis.title = element_text(size = 20), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black"))
-        
+       
 ```
+
+<br>
 
 ## Current Group Names
 Next, looking at the current (EVT) Group Names of the Michigamme Highlands:
@@ -184,6 +185,7 @@ EVT_GP_Arr <- arrange(EVT_GP_ACRES, desc(ACRES))
 EVT_GP_ACRES_CHOP <- EVT_GP_Arr[c(1:10),]
 ```
 
+<br>
 
 ```{r echo=FALSE}
 ggplot(EVT_GP_ACRES_CHOP, aes(x = reorder(EVT_200_GP_NAME, ACRES), y = ACRES)) + 
@@ -193,10 +195,12 @@ ggplot(EVT_GP_ACRES_CHOP, aes(x = reorder(EVT_200_GP_NAME, ACRES), y = ACRES)) +
   ggtitle("Current Group Ecosystems of the MH") +
   labs(x = "", y = "Acres") +
   scale_y_continuous(labels = comma) +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  theme(plot.title = element_text(size = 20), axis.title = element_text(size = 20), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black"))
 #ggplotly(hist_evt_grp)
 ```
+
+<br>
 
 ## Group Names Recap
 
@@ -232,6 +236,8 @@ BPS_NAME_CHOP <- BPS_NAME_Desc[c(1:9),]
 
 ```
 
+<br>
+
 ```{r echo=FALSE}
 ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) + 
   geom_bar(stat = "identity", fill = "grey") +
@@ -240,10 +246,12 @@ ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) +
   ggtitle("Historical Ecosystem Names") +
   labs(x = "", y = "Acres") +
   scale_y_continuous(labels = comma) +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  theme(plot.title = element_text(size = 20), axis.title = element_text(size = 20), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black"))
 
 ```
+
+<br>
 
 ## Current Ecosystem Names
 There are 75 named ecosystems for the current (EVT) data of the Michigamme Highlands. However, all ecosystems beyond the top 9 compose less than 2% each of the MH, so have been omitted from the graph. 
@@ -270,6 +278,8 @@ EVT_NAME_CHOP <- EVT_200_NAME_Desc[c(1:9),]
 
 This final histogram shows the top nine current ecosystem names in the MH. Any ecosystem name <2% of the total acreage was omitted from the following graph.
 
+<br>
+
 ```{r echo=FALSE}
 ggplot(EVT_NAME_CHOP, aes(x = reorder(EVT_200_NAME, ACRES), y = ACRES)) + 
   geom_bar(stat = "identity", fill = "grey") +
@@ -278,10 +288,12 @@ ggplot(EVT_NAME_CHOP, aes(x = reorder(EVT_200_NAME, ACRES), y = ACRES)) +
   ggtitle("Top 9 Current Ecosystem Names of the MH") +
   labs(x = "", y = "Acres") +
   scale_y_continuous(labels = comma) +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  theme(plot.title = element_text(size = 20), axis.title = element_text(size = 20), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black"))
 #ggplotly(hist_grp)
 ```
+
+<br>
 
 ## Ecosystem Names Recap
 
@@ -307,6 +319,7 @@ Each ecosystem comprises "100%" of the canopy cover percentage, so each ecosyste
 
 ## Existing Vegetation Cover (EVC)
 
+<br>
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide', fig.keep='all'}
 evc_evt5 <- read_csv("evc_evt5.csv", col_types = cols(percent = col_number()))
@@ -342,7 +355,7 @@ evc_th1 <-  ggplot(evc_evt5 ,aes(x=cover_percent ,y=evt ,fill=percent))+
          caption = "LANDFIRE 2016 Existing Vegetation Cover data. ") +
     labs(fill = "Percent of \nEcosystem")
   #theme options
-  theme(
+  theme(plot.title = element_text(size = 20), axis.title = element_text(size = 20), 
     #bold font for legend text
     legend.text=element_text(face="bold"),
     #set thickness of axis ticks
@@ -358,6 +371,8 @@ evc_th1 <-  ggplot(evc_evt5 ,aes(x=cover_percent ,y=evt ,fill=percent))+
 evc_th1
 
 ```
+
+<br>
 
 Upon looking at EVC, you can see that Northern Hardwoods Forests have a higher percentage of canopy cover compared the other ecosystems. Conifer Acidic swamp and Treed Poor Fens have the lowest percentage of canopy cover.  
 
@@ -381,6 +396,8 @@ evh_labels <- c("Pine-Hemlock Forest (35,820ac)",
 
 ```
 
+<br>
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide', fig.keep='all'}
 #plot
 evh_th1 <- ggplot(evh_evt5 ,aes(x=height ,y=evt ,fill=percent))+
@@ -400,7 +417,7 @@ evh_th1 <- ggplot(evh_evt5 ,aes(x=height ,y=evt ,fill=percent))+
        caption = "LANDFIRE 2016 Existing Vegetation Height data. ") +
   labs(fill = "Percent of \nEcosystem")
 #theme options
-theme(
+theme(plot.title = element_text(size = 20), axis.title = element_text(size = 20), 
   #bold font for legend text
   legend.text=element_text(face="bold"),
   #set thickness of axis ticks
@@ -415,6 +432,8 @@ theme(
 
 evh_th1
 ```
+
+<br>
 
 Northern Hardwoods have the tallest canopy, and Conifer Acidic Swamp and Treed Poor Fen have the shortest. 
 
