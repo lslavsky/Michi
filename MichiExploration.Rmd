@@ -291,11 +291,18 @@ Development, recently logged areas, mining, agriculture, and other modern-day di
 
 # Existing Vegetation Height & Cover
 
-The last components of the Michigamme Highlands we will look at in this document are existing vegetation height and existing vegetation cover. This data is provided by the LANDFIRE database of current ecosystems. 
+The last components of the Michigamme Highlands we will look at in this document are existing vegetation height and existing vegetation cover. These data are provided by the LANDFIRE database. 
+
+## How to read a Heatmap
+
+For looking at EVC & EVH, we decided to create "heatmaps". They combine color intensity and location on the x-axis to represent data. 
+
+The more intense the color/shade in the heatmap, the more prevalant that component of the map (cover or height). So a dark green bar for tree canopy indicates a higher occurance (percentage) of that particular percentage of canopy cover. 
+
+Each ecosystem comprises "100%" of the canopy cover percentage, so each ecosystem is looked at individually. 
 
 ## Existing Vegetation Cover (EVC)
 
-For looking at EVC & EVH, we decided to create "heatmaps". R-Graph-Gallery describes a heatmap as "a graphical representation of data where the individual values contained in a matrix are represented as colors." The darker the color 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide', fig.keep='all'}
 evc_evt5 <- read_csv("evc_evt5.csv", col_types = cols(percent = col_number()))
@@ -348,6 +355,9 @@ evc_th1
 
 ```
 
+Upon looking at EVC, you can see that Northern Hardwoods Forests have a higher percentage of canopy cover compared the other ecosystems. Conifer Acidic swamp and Treed Poor Fens have the lowest percentage of canopy cover.  
+
+Most of the ecosystems' "average" canopy cover is in the middle of their percentage range, while Northern Hardwoods tend towards the upper end of their percentage range. 
 
 ## Existing Vegetation Height (EVH)
 
@@ -401,6 +411,11 @@ theme(
 
 evh_th1
 ```
+
+Northern Hardwoods have the tallest canopy, and Conifer Acidic Swamp and Treed Poor Fen have the shortest. 
+
+Pine-Hemlock Forests have a distinct 25% of their canopy around 18-19 meters, while the rest of the ecosystems tend to have most of their canopy height in the center of their range. 
+
 
 # Conclusions
 
