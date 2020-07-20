@@ -49,9 +49,10 @@ library(plotly)
 * Laura will do the fig.width=12 thing to all charts
 * Randy will fix labels in chart to match map **DONE**
 * Randy will fix "norther" on map PLUS implement Emily's requests **DONE**
-* Randy will write up methods/rules/interp for degraded
+* Randy will write up methods/rules/interp for degraded **DONE**
 * THEN Laura will send to Seth for review (remember to acknowledge his review); also consider appending his literature review
 * Laura and Randy: consider a note at the top...noting this is a Phase 1...there's a lot more we can do. AND This serves as an initial baseline. 
+* Laura and/or Randy writes figure captions
 
 
 
@@ -410,12 +411,21 @@ Pine-Hemlock Forests have a distinct 25% of their canopy around 18-19 meters, wh
 
 # Degraded lands
 
-* METHODS/Rules
-* CHART
-* MAP
-* BULLETS
+The Michigamme Highlands, while relatively undeveloped and remote has been heavily managed by forest products producers for decades. In particular, the northern hardwoods forest type has been converted to plantations (both native and introduced tree species), simplified, or had non-maple species largely removed and harvested in a way that has left canopy closure unnaturally low.  
 
+To assess the levels of these types of degradation we:
 
+1.  Combined LANDFIRE Biophysical Settings and Existing Vegetation Cover, Height and Type datasets in ArcGIS
+2.  Filtered and labeled the following scenarios in Excel:
+    * Natural-Other ecosystem type for situations where northern hardwood sites (as mapped in the BpS dataset) were mapped as a different type in the EVT dataset
+    * Northern Hardwoods > 70% canopy closure
+    * Northern Hardwoods < 70% canopy closure
+    * Unnatural-Converted for areas mapped as agricultural and urban in the EVT dataset
+    * Plantations.  We could not distinguish between native and introduced tree species
+3. Summarized to those labels by acres for the chart
+4. Joined tabular data to the combined data by value to generate the map. 
+
+Acres per level of degradation on Northern Hardwood sites
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=12}
 
 degraded <- read_csv("degraded.csv")
@@ -435,13 +445,14 @@ ggplot(degraded, aes(x = reorder(label, percent), y = percent)) +
 degradedChart
 ```
 
+Roughly 72% of the northern hardwood sites are still mapped as northern hardwood sites, but ~30% (~17% of analysis area) of those areas have canopy cover of less than 70% suggesting.  Around 5% (over 16k acres) of the northern hardwood sites were mapped as plantation.
 
 
 ```{r echo=FALSE}
 knitr::include_graphics("michiDegraded2.jpg")
 ```
 
-
+Northern hardwoods with less than 70% canopy closure are mostly in the southwestern region of the Michigamme Highlands, with plantations being spread throughout the area.
 
 # Conclusions
 
