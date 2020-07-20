@@ -44,6 +44,17 @@ library(knitr)
 library(plotly)
 ```
 
+#  TO DO LIST by 22 July 20 WEDNESDAY:
+* Laura will read/edit
+* Laura will do the fig.width=12 thing to all charts
+* Randy will fix labels in chart to match map **DONE**
+* Randy will fix "norther" on map PLUS implement Emily's requests **DONE**
+* Randy will write up methods/rules/interp for degraded
+* THEN Laura will send to Seth for review (remember to acknowledge his review); also consider appending his literature review
+* Laura and Randy: consider a note at the top...noting this is a Phase 1...there's a lot more we can do. AND This serves as an initial baseline. 
+
+
+
 
 # This document...
 Explores vegetation conditions of the Michigamme Highlands ecoregion of the Upper Peninsula of Michigan to inform future conservation efforts there.  Here we:
@@ -196,7 +207,7 @@ BPS_NAME_CHOP <- BPS_NAME_Desc[c(1:9),]
 
 <br>
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=12}
 ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) + 
   geom_bar(stat = "identity", fill = "grey") +
   coord_flip() +
@@ -427,13 +438,15 @@ degradedChart
 
 
 ```{r echo=FALSE}
-knitr::include_graphics("NH_degraded.jpg")
+knitr::include_graphics("michiDegraded2.jpg")
 ```
 
 
 
 # Conclusions
 
-The Michigamme Highlands are diverse wiht varying ecosystem types throughout. 
+The Michigamme Highlands are diverse with varying ecosystem types throughout. 
 
 The end.
+
+ACKNOWLEDGE: 
