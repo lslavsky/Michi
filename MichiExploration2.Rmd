@@ -278,7 +278,7 @@ Each ecosystem comprises "100%" of the canopy cover percentage, so each ecosyste
 
 <br>
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide', fig.keep='all'}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=12,  results='hide', fig.keep='all'}
 evc_evt5 <- read_csv("evc_evt5.csv", col_types = cols(percent = col_number()))
 
 
@@ -337,7 +337,7 @@ Most of the ecosystems' "average" canopy cover is in the middle of their percent
 
 ## Existing Vegetation Height (EVH)
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide', fig.keep='all'}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=12 ,results='hide', fig.keep='all'}
 evh_evt5 <- read_csv("evh_evt5.csv", col_types = cols(percent = col_number()))
 
 evh_evt5$evt  <- factor(evh_evt5$evt, levels = c("Northern Hardwoods Forest","Alkaline Conifer-Hardwood Swamp", "Conifer Acidic Swamp and Treed Poor Fen", "Mesic Balsam Fir-Spruce Forest", "Pine-Hemlock-Hardwood Forest"))
@@ -355,7 +355,7 @@ evh_labels <- c("Pine-Hemlock Forest (35,820ac)",
 
 <br>
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide', fig.keep='all'}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=12,results='hide', fig.keep='all'}
 #plot
 evh_th1 <- ggplot(evh_evt5 ,aes(x=height ,y=evt ,fill=percent))+
 
@@ -395,6 +395,41 @@ evh_th1
 Northern Hardwoods have the tallest canopy, and Conifer Acidic Swamp and Treed Poor Fen have the shortest. 
 
 Pine-Hemlock Forests have a distinct 25% of their canopy around 18-19 meters, while the rest of the ecosystems tend to have most of their canopy height in the center of their range. 
+
+
+# Degraded lands
+
+* METHODS/Rules
+* CHART
+* MAP
+* BULLETS
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=12}
+
+degraded <- read_csv("degraded.csv")
+
+degradedChart <-
+ggplot(degraded, aes(x = reorder(label, percent), y = percent)) + 
+  geom_bar(stat = "identity", fill = "grey") +
+  coord_flip() +
+  
+  ggtitle("Level of degredation of Northern Hardwoods sites") +
+  labs(x = "", y = "Acres") +
+  scale_y_continuous(labels = comma, limits = c(0, 60)) +
+  theme(plot.title = element_text(size = 20), axis.title = element_text(size = 20), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) 
+  
+
+degradedChart
+```
+
+
+
+```{r echo=FALSE}
+knitr::include_graphics("NH_degraded.jpg")
+```
+
 
 
 # Conclusions
