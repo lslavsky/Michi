@@ -1,7 +1,7 @@
 ---
 title: "Michigame Highlands Exploration VERSION 2"
 author: "Laura Slavsky and Randy Swaty- Conservation Data Lab"
-date: "4/20/2020"
+date: "7/22/2020"
 output:
   html_document:
     number_sections: no
@@ -45,12 +45,12 @@ library(plotly)
 ```
 
 #  TO DO LIST by 22 July 20 WEDNESDAY:
-* Laura will read/edit
-* Laura will do the fig.width=12 thing to all charts
+* Laura will read/edit **DONE**
+* Laura will do the fig.width=12 thing to all charts **DONE** 
 * Randy will fix labels in chart to match map **DONE**
 * Randy will fix "norther" on map PLUS implement Emily's requests **DONE**
 * Randy will write up methods/rules/interp for degraded **DONE**
-* THEN Laura will send to Seth for review (remember to acknowledge his review); also consider appending his literature review
+* THEN Laura will send to Seth for review (remember to acknowledge his review); also consider appending his literature review **About to be DONE**
 * Laura and Randy: consider a note at the top...noting this is a Phase 1...there's a lot more we can do. AND This serves as an initial baseline. 
 * Laura and/or Randy writes figure captions
 
@@ -58,11 +58,12 @@ library(plotly)
 
 
 # This document...
+
 Explores vegetation conditions of the Michigamme Highlands ecoregion of the Upper Peninsula of Michigan to inform future conservation efforts there.  Here we:
 
 * Provide basic graphics and interpretations of the Michigamme Highlands vegetation, past and present,
 * Identify degraded lands on Northern Hardwoods sites,
-* Summarize conditions of existing cover, height and type
+* Summarize conditions of existing vegetation cover, height and type
 
 For this assessment we clipped LANDFIRE's Biophysical Settings (BpS, represents historical ecosystems), Existing Vegetation Cover, Height and Type (EVC, EVH and EVT, ReMap version, ca 2016) to the Michigamme Highlands polygon supplied by Emily Clegg.
 
@@ -81,7 +82,8 @@ knitr::include_graphics("View.jpg")
 # Background & Brief Definitions 
 
 ## Location and significance
-The Michigamme Highlands of the central Upper Peninsula of MI are "known for containing a diverse range of habitats and the Reserve is a good example. Forests, wetlands, lakes, rivers and rock outcroppings all connect together in a beautifully pristine area" (see more about conservation there at https://www.nature.org/en-us/get-involved/how-to-help/places-we-protect/wilderness-lakes-reserve/).  
+
+The Michigamme Highlands of the central Upper Peninsula of MI are "known for containing a diverse range of habitats ... [f]orests, wetlands, lakes, rivers and rock outcroppings all connect together in a beautifully pristine area" (see more about conservation there at https://www.nature.org/en-us/get-involved/how-to-help/places-we-protect/wilderness-lakes-reserve/).  
 
 The dynamics of land ownership there present ongoing opportunities for protection and ecologically focused management.
 
@@ -135,7 +137,7 @@ GP_ACRES_Arr <- arrange(BPS_GP_ACRES, desc(ACRES))
 GP_ACRES_CHOP <- GP_ACRES_Arr[c(1:4),]
 
 ggplot(GP_ACRES_CHOP, aes(x = reorder(BPS_GP_NAME, ACRES), y = ACRES)) + 
-  geom_bar(stat = "identity", fill = "grey31") +
+  geom_bar(stat = "identity", fill = "grey") +
   coord_flip() +
 
   ggtitle("Historical Group Ecosystems of the MH") +
@@ -210,7 +212,7 @@ BPS_NAME_CHOP <- BPS_NAME_Desc[c(1:9),]
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=12}
 ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) + 
-  geom_bar(stat = "identity", fill = "grey") +
+  geom_bar(stat = "identity", fill = "red3") +
   coord_flip() +
   
   ggtitle("Historical Ecosystem Names") +
@@ -249,9 +251,9 @@ EVT_NAME_CHOP <- EVT_200_NAME_Desc[c(1:9),]
 
 <br>
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=12}
 ggplot(EVT_NAME_CHOP, aes(x = reorder(EVT_200_NAME, ACRES), y = ACRES)) + 
-  geom_bar(stat = "identity", fill = "grey") +
+  geom_bar(stat = "identity", fill = "darkorange1") +
   coord_flip() +
   
   ggtitle("Top 9 Current Ecosystem Names of the MH") +
@@ -264,15 +266,15 @@ ggplot(EVT_NAME_CHOP, aes(x = reorder(EVT_200_NAME, ACRES), y = ACRES)) +
 
 <br>
 
-## Vegetation historical and current recapped
+## Current & Historical Vegetation recapped:
 
-The Laurentian-Acadian Northern Hardwoods Forest was/is the most prevalent ecosystem. From there however, there are some siginificant differences in what ecosytems are present today.
+The Laurentian-Acadian Northern Hardwoods Forest historically was and currently is the most prevalent ecosystem in the Michigamme Highlands. From there however, there are some siginificant differences in what ecosytems are present today.
 
-There are less conifer & hemlock ecosystems than historically present, and there are more aspen/birch ecosystems now (primary successional species) compared to historically. Developed roads make it into the top 9 ecosystems composing 2.1% of the Michigamme Highlands. 
+Currently, there are fewer conifer & hemlock ecosystems than historically present, and there are more primary successional species such as aspen/birch ecosystems compared to historical data. Developed roads make it into the top 9 ecosystems composing 2.1% of the Michigamme Highlands. 
 
 Peatlands compose less than 2% of the MH where historically they were fourth most prevalant ecosystem. 
 
-Development, recently logged areas, mining, agriculture, and other modern-day disturbances compose less than 2% of the MH each, but are present in the MH today. 
+Development, recently logged areas, mining, agriculture, and other modern-day disturbances compose less than 2% of the MH each, but are present in the MH today and were not a historical component. 
 
 # Existing Vegetation Height & Cover
 
@@ -282,9 +284,9 @@ The last components of the Michigamme Highlands we will look at in this document
 
 For looking at EVC & EVH, we decided to create "heatmaps". They combine color intensity and location on the x-axis to represent data. 
 
-The more intense the color/shade in the heatmap, the more prevalant that component of the map (cover or height). So a dark green bar for tree canopy indicates a higher occurance (percentage) of that particular percentage of canopy cover. 
+The more intense the color/shade in the heatmap, the more prevalant that component of the map (in this case cover or height). For example, a dark green bar for tree canopy indicates a higher occurance (percentage) of that particular percentage of canopy cover (the x-axis). 
 
-Each ecosystem comprises "100%" of the canopy cover percentage, so each ecosystem is looked at individually. 
+Each ecosystem comprises "100%" of the canopy cover percentage for that specific ecosystem.  
 
 ## Existing Vegetation Cover (EVC)
 
@@ -343,9 +345,11 @@ evc_th1
 
 <br>
 
-Upon looking at EVC, you can see that Northern Hardwoods Forests have a higher percentage of canopy cover compared the other ecosystems. Conifer Acidic swamp and Treed Poor Fens have the lowest percentage of canopy cover.  
 
-Most of the ecosystems' "average" canopy cover is in the middle of their percentage range, while Northern Hardwoods tend towards the upper end of their percentage range. 
+Upon looking at EVC, you can see that Northern Hardwoods Forests have a higher percentage of canopy cover compared to the other ecosystems present. Conifer Acidic swamp and Treed Poor Fens have the lowest percentage of canopy cover.  
+
+Most of the ecosystems' "average" canopy cover is in the middle of their percentage range, while Northern Hardwoods tend towards the upper end of their percentage range, the majority of the ecosystem has roughly 80-90% canopy cover. 
+
 
 ## Existing Vegetation Height (EVH)
 
@@ -404,14 +408,15 @@ evh_th1
 
 <br>
 
-Northern Hardwoods have the tallest canopy, and Conifer Acidic Swamp and Treed Poor Fen have the shortest. 
+Upon looking at EVH, Northern Hardwoods have the tallest canopy, and Conifer Acidic Swamp and Treed Poor Fen have the shortest. 
 
 Pine-Hemlock Forests have a distinct 25% of their canopy around 18-19 meters, while the rest of the ecosystems tend to have most of their canopy height in the center of their range. 
 
+Now that we have a general idea of the ecosystems present & existing vegetation height/cover of the Michigamme Highlands, let's look at ecosystems/areas that have been degraded. 
 
 # Degraded lands
 
-The Michigamme Highlands, while relatively undeveloped and remote has been heavily managed by forest products producers for decades. In particular, the northern hardwoods forest type has been converted to plantations (both native and introduced tree species), simplified, or had non-maple species largely removed and harvested in a way that has left canopy closure unnaturally low.  
+The Michigamme Highlands, while relatively undeveloped and remote, has been heavily managed by forest products producers for decades. In particular, the northern hardwoods forest type has been converted to plantations (both native and introduced tree species), simplified, or had non-maple species largely removed and harvested in a way that has left canopy closure unnaturally low.  
 
 To assess the levels of these types of degradation we:
 
@@ -432,7 +437,7 @@ degraded <- read_csv("degraded.csv")
 
 degradedChart <-
 ggplot(degraded, aes(x = reorder(label, percent), y = percent)) + 
-  geom_bar(stat = "identity", fill = "grey") +
+  geom_bar(stat = "identity", fill = "aquamarine4") +
   coord_flip() +
   
   ggtitle("Level of degredation of Northern Hardwoods sites") +
@@ -456,8 +461,20 @@ Northern hardwoods with less than 70% canopy closure are mostly in the southwest
 
 # Conclusions
 
-The Michigamme Highlands are diverse with varying ecosystem types throughout. 
+This report is a primary step to introduce the current and historical state of the Michigamme Highlands Ecoregion, an ecologial area of 5,000+ acres that TNC MI is looking to put protection efforts in. 
 
-The end.
+The Michigamme Highlands are diverse with varying ecosystem types throughout. There are areas that have been degraded, and areas that remain intact with healthy and diverse landscapes. 
+
+
+# Next Steps:
+As previously stated, this document serves as a stepping stone toward further projects regarding the Michigamme Highlands. This report and the data utilized has many more potential uses that could further the work of protecting the Michigamme Highlands. The following are just a few ideas of steps that could be taken next.
+
+1) More in-depth drafts of this document including interactive graphs, a different interface, etc.
+2) A closer look at more specific areas of interest within the Michigamme Highlands.
+3) Other data visualizations to explore the large amount of data utilized.
+4) Many, many more things! Ask and we would be happy to see if we can make it happen. 
+
+
+If you have any comments/questions, please feel free to reach out to Randy Swaty or Laura Slavsky (rswaty@tnc.org, laura.slavsky@tnc.org).
 
 ACKNOWLEDGE: 
