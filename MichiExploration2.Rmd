@@ -42,6 +42,7 @@ library(scales)
 library(DT)
 library(knitr)
 library(plotly)
+options(scipen = 999)
 ```
 
 #  TO DO LIST by 22 July 20 WEDNESDAY:
@@ -51,9 +52,9 @@ library(plotly)
 * Randy will fix "norther" on map PLUS implement Emily's requests **DONE**
 * Randy will write up methods/rules/interp for degraded **DONE**
 * THEN Laura will send to Seth for review (remember to acknowledge his review); also consider appending his literature review **About to be DONE**
-* Laura and Randy: consider a note at the top...noting this is a Phase 1...there's a lot more we can do. AND This serves as an initial baseline. 
+* Laura and Randy: consider a note at the top...noting this is a Phase 1...there's a lot more we can do. AND This serves as an initial baseline. **DONE**
 * Laura and/or Randy writes figure captions
-
+* Laura added the percentages "left out" from omitting <2% groups, or actually put the percentages of what was kept/represented in the graphs. **DONE**
 
 
 
@@ -69,7 +70,7 @@ For this assessment we clipped LANDFIRE's Biophysical Settings (BpS, represents 
 
 For more information on LANDFIRE and the datasets please visit www.landfire.gov. 
 
-This document is **introductory** look at the Michigamme Highlands and **not** an in-depth analysis of the area. 
+This document is a starting point, or Phase 1 of potential work in the Michigamme Highlands. It is indended to be an **introductory** look at the Michigamme Highlands and **not** an in-depth analysis of the area. Please see the Summary for potential directions this work and for contact information of the authors. 
 
 
 ```{r echo=FALSE}
@@ -188,7 +189,7 @@ ggplot(EVT_GP_ACRES_CHOP, aes(x = reorder(EVT_200_GP_NAME, ACRES), y = ACRES)) +
 ## Historical Ecosystems
 Historically, hardwoods made up a significant portion (59.6%) of the Michigamme Highlands, with Laurentian-Acadian Northern Hardwoods, Northern Hardwoods - Hemlock, and Pine-Hemlock-Hardwood forest being the top three BpSs. 
 
-Any BpS <2% of the total acreage was omitted from the following graph.
+Any BpS <2% of the total acreage was omitted from the following graph (>96% was kept and is represented).
 
 ```{r fix up da BpS name data, echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -226,7 +227,7 @@ ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) +
 <br>
 
 ## 
-There are 75 Existing Vegetation Types mapped in the Michigamme Highlands. However, all ecosystems beyond the top 9 comprise less than 2% each of the MH, so have been omitted from the graph. 
+There are 75 Existing Vegetation Types mapped in the Michigamme Highlands. However, all ecosystems beyond the top 9 comprise less than 2% each of the MH, so have been omitted from the graph (>86% of the acerage was greater than 2% and is represented in the graph). 
 
 ```{r fix up da EVT name data, message=FALSE, warning=FALSE, include=FALSE}
 EVT_200_NAME <- Michi %>% #Creating new dataframe with just EVT_200_NAME and ACRES
@@ -477,4 +478,8 @@ As previously stated, this document serves as a stepping stone toward further pr
 
 If you have any comments/questions, please feel free to reach out to Randy Swaty or Laura Slavsky (rswaty@tnc.org, laura.slavsky@tnc.org).
 
-ACKNOWLEDGE: 
+## Acknowledgements: 
+
+Thanks to Emily Clegg for providing polygons of the Michigamme Highlands and to Seth Meyers for reviewing and suggesting edits to drafts of this report. 
+
+
