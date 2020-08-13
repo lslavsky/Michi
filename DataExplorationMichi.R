@@ -258,7 +258,8 @@ ggplot(GP_ACRES_CHOP, aes(x = reorder(BPS_GP_NAME, ACRES), y = ChopPct)) +
         panel.background = element_blank(), axis.line = element_line(colour = "black"))
 
 
-
-
+# For figuring out percentage incluced/excluded in report
+BPS_NAME_Desc = mutate(BPS_NAME_Desc,
+                       ChopPct = (ACRES / sum(ACRES)) *100)
 
 
