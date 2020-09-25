@@ -62,7 +62,7 @@ This document is a starting point, or Phase 1 of potential work in the Michigamm
 <br>
 
 
-```{r echo=FALSE, fig.cap="View across Michigamme Highlands"}
+```{r echo=FALSE, fig.cap="View from the summit of Hogback, looking across part of the Michigamme Highlands"}
 knitr::include_graphics("View.jpg")
 ```
 
@@ -75,7 +75,7 @@ knitr::include_graphics("View.jpg")
 
 The Michigamme Highlands of the central Upper Peninsula of MI are "known for containing a diverse range of habitats ... [f]orests, wetlands, lakes, rivers and rock outcroppings all connect together in a beautifully pristine area" (see more about conservation there at https://www.nature.org/en-us/get-involved/how-to-help/places-we-protect/wilderness-lakes-reserve/).  
 
-The dynamics of land ownership there present ongoing opportunities for protection and ecologically focused management.
+The dynamics of land ownership in this area present ongoing opportunities for protection and ecologically focused management.
 
  <br>
  
@@ -93,7 +93,7 @@ BpS = Biophysical Settings: the data essentially represents vegetation that hist
 
 EVT = Existing Vegetation Type represents "the current distribution of the terrestrial ecological systems classification" (https://www.landfire.gov/evt.php).  
 
-**BpS = Historic, EVT = Current**. The remainder of this document will use "Historic" and "Current" as the main means of referencing these data. 
+**BpS = Historic, EVT = Current**. The remainder of this document will use "Historic" and "Current" or "BpS" and "EVT" to reference these data.
 
 <br>
 
@@ -212,7 +212,7 @@ ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) +
   geom_bar(stat = "identity", fill = "red3") +
   coord_flip() +
   labs(title = "Top 9 Historical Ecosystems of the Michigamme Highlands", 
-       subtitle = "Area dominated by northern hardwoods types", 
+       subtitle = "Note: Area dominated by northern hardwoods types", 
        caption = "Source: LANDFIRE Biophysical Settings", 
        x = "", y = "Acres") +
   scale_y_continuous(labels = comma) +
@@ -228,7 +228,7 @@ ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) +
 <br>
 
 ## 
-There are 75 Existing Vegetation Types mapped in the Michigamme Highlands. However, all ecosystems beyond the top 9 comprise less than 2% each of the MH, so have been omitted from the graph (>86% of the acerage was greater than 2% and is represented in the graph). 
+There are 75 Existing Vegetation Types mapped in the Michigamme Highlands. However, all ecosystems beyond the top 9 comprise less than 2% each of the MH, so have been omitted from the graph (>86% was kept and is represented). 
 
 ```{r fix up da EVT name data, message=FALSE, warning=FALSE, include=FALSE}
 EVT_200_NAME <- Michi %>% #Creating new dataframe with just EVT_200_NAME and ACRES
@@ -257,8 +257,8 @@ EVT_NAME_CHOP <- EVT_200_NAME_Desc[c(1:9),]
 ggplot(EVT_NAME_CHOP, aes(x = reorder(EVT_200_NAME, ACRES), y = ACRES)) + 
   geom_bar(stat = "identity", fill = "darkorange1") +
   coord_flip() +
-  labs(title = "top 9 Current Ecosystems of the Michigamme Highlands", 
-       subtitle = "Area still dominated by northern hardwoods types", 
+  labs(title = "Top 9 Current Ecosystems of the Michigamme Highlands", 
+       subtitle = "Note: Area still dominated by northern hardwoods types", 
        caption = "Source: LANDFIRE Existing Vegatation Types of 2016", 
        x = "", y = "Acres") +
   scale_y_continuous(labels = comma) +
@@ -275,7 +275,7 @@ The Laurentian-Acadian Northern Hardwoods Forest historically was and currently 
 
 Currently, there are fewer conifer & hemlock ecosystems than historically present, and there are more primary successional species such as aspen/birch ecosystems compared to historical data. Developed roads make it into the top 9 ecosystems composing 2.1% of the Michigamme Highlands. 
 
-Peatlands compose less than 2% of the MH where historically they were fourth most prevalant ecosystem. 
+Peatlands compose less than 2% of the MH today, where historically they were fourth most prevalant ecosystem. 
 
 Development, recently logged areas, mining, agriculture, and other modern-day disturbances compose less than 2% of the MH each, but are present in the MH today and were not a historical component. 
 
@@ -411,9 +411,9 @@ evh_th1
 
 <br>
 
-Upon looking at EVH, Northern Hardwoods have the tallest canopy, and Conifer Acidic Swamp and Treed Poor Fen have the shortest. 
+Upon looking at EVH, Northern Hardwoods have the tallest canopy, and Conifer Acidic Swamp and Treed Poor Fen have the shortest - which seems reasonable given the life histories of these trees, plants, and ecosystems.  
 
-Pine-Hemlock Forests have a distinct 25% of their canopy around 18-19 meters, while the rest of the ecosystems tend to have most of their canopy height in the center of their range. 
+Looking further, Pine-Hemlock Forests have a distinct 25% of their canopy around 18-19 meters, while the rest of the ecosystems tend to have most of their canopy height in the center of their range. 
 
 Now that we have a general idea of the ecosystems present & existing vegetation height/cover of the Michigamme Highlands, let's look at ecosystems/areas that have been degraded. 
 
@@ -433,6 +433,7 @@ To assess the levels of these types of degradation we:
 3. Summarized to those labels by acres for the chart
 4. Joined tabular data to the combined data by value to generate the map. 
 
+<br>
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=12}
 
