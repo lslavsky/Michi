@@ -7,12 +7,10 @@ output:
     number_sections: no
     theme: lumen
     toc: yes
-    toc_depth: 3
+    toc_depth: 4
     toc_float:
-      toc_collapsed: yes
-  word_document:
-    toc: yes
-    toc_depth: '3'
+      toc_collapsed: false
+      smooth_scroll: false
 editor_options:
   chunk_output_type: console
 code_folding: hide
