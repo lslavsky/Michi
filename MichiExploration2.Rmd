@@ -1,5 +1,5 @@
 ---
-title: "Michigame Highlands Exploration VERSION 2"
+title: "Michigame Highlands Exploration"
 author: "Laura Slavsky and Randy Swaty- Conservation Data Lab"
 date: "7/22/2020"
 output:
@@ -45,19 +45,6 @@ library(plotly)
 options(scipen = 999)
 ```
 
-#  TO DO LIST by 22 July 20 WEDNESDAY:
-* Laura will read/edit **DONE**
-* Laura will do the fig.width=12 thing to all charts **DONE** 
-* Randy will fix labels in chart to match map **DONE**
-* Randy will fix "norther" on map PLUS implement Emily's requests **DONE**
-* Randy will write up methods/rules/interp for degraded **DONE**
-* THEN Laura will send to Seth for review (remember to acknowledge his review); also consider appending his literature review **About to be DONE**
-* Laura and Randy: consider a note at the top...noting this is a Phase 1...there's a lot more we can do. AND This serves as an initial baseline. **DONE**
-* Laura and/or Randy writes figure captions
-* Laura added the percentages "left out" from omitting <2% groups, or actually put the percentages of what was kept/represented in the graphs. **DONE**
-
-
-
 # This document...
 
 Explores vegetation conditions of the Michigamme Highlands ecoregion of the Upper Peninsula of Michigan to inform future conservation efforts there.  Here we:
@@ -72,8 +59,10 @@ For more information on LANDFIRE and the datasets please visit www.landfire.gov.
 
 This document is a starting point, or Phase 1 of potential work in the Michigamme Highlands. It is indended to be an **introductory** look at the Michigamme Highlands and **not** an in-depth analysis of the area. Please see the Summary for potential directions this work and for contact information of the authors. 
 
+<br>
 
-```{r echo=FALSE}
+
+```{r echo=FALSE, fig.cap="View across Michigamme Highlands"}
 knitr::include_graphics("View.jpg")
 ```
 
@@ -88,10 +77,13 @@ The Michigamme Highlands of the central Upper Peninsula of MI are "known for con
 
 The dynamics of land ownership there present ongoing opportunities for protection and ecologically focused management.
 
-
-```{r echo=FALSE}
+ <br>
+ 
+```{r echo=FALSE, fig.cap="Assessment area.  Data provided by Emily Clegg."}
 knitr::include_graphics("michilocator.png")
 ```
+
+<br>
 
 ## What is BpS? & EVT? 
 
@@ -103,9 +95,10 @@ EVT = Existing Vegetation Type represents "the current distribution of the terre
 
 **BpS = Historic, EVT = Current**. The remainder of this document will use "Historic" and "Current" as the main means of referencing these data. 
 
+<br>
 
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.cap="McCormick Wilderness Area, Ottawa National Forest"}
 knitr::include_graphics("McCormickWilderness.jpg")
 ```
 
@@ -140,12 +133,15 @@ GP_ACRES_CHOP <- GP_ACRES_Arr[c(1:4),]
 ggplot(GP_ACRES_CHOP, aes(x = reorder(BPS_GP_NAME, ACRES), y = ACRES)) + 
   geom_bar(stat = "identity", fill = "grey") +
   coord_flip() +
-
-  ggtitle("Historical Group Ecosystems of the MH") +
+  ggtitle("Historical Ecosystem Groups of the MH") +
   labs(x = "", y = "Acres", colour = "black") +
   scale_y_continuous(labels = comma) +
-theme(plot.title = element_text(size = 20), axis.title = element_text(size = 20), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black"))
+  theme(plot.title = element_text(size = 20), 
+        axis.title = element_text(size = 20), 
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
        
 ```
 
@@ -215,12 +211,17 @@ BPS_NAME_CHOP <- BPS_NAME_Desc[c(1:9),]
 ggplot(BPS_NAME_CHOP, aes(x = reorder(BPS_NAME, ACRES), y = ACRES)) + 
   geom_bar(stat = "identity", fill = "red3") +
   coord_flip() +
-  
-  ggtitle("Historical Ecosystem Names") +
-  labs(x = "", y = "Acres") +
+  labs(title = "Top 9 Historical Ecosystems of the Michigamme Highlands", 
+       subtitle = "Area dominated by northern hardwoods types", 
+       caption = "Source: LANDFIRE Biophysical Settings", 
+       x = "", y = "Acres") +
   scale_y_continuous(labels = comma) +
-  theme(plot.title = element_text(size = 20), axis.title = element_text(size = 20), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black"))
+  theme(plot.title = element_text(size = 20), 
+        axis.title = element_text(size = 20), 
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(), 
+        axis.line = element_line(colour = "black"))
 
 ```
 
@@ -256,9 +257,10 @@ EVT_NAME_CHOP <- EVT_200_NAME_Desc[c(1:9),]
 ggplot(EVT_NAME_CHOP, aes(x = reorder(EVT_200_NAME, ACRES), y = ACRES)) + 
   geom_bar(stat = "identity", fill = "darkorange1") +
   coord_flip() +
-  
-  ggtitle("Top 9 Current Ecosystem Names of the MH") +
-  labs(x = "", y = "Acres") +
+  labs(title = "top 9 Current Ecosystems of the Michigamme Highlands", 
+       subtitle = "Area still dominated by northern hardwoods types", 
+       caption = "Source: LANDFIRE Existing Vegatation Types of 2016", 
+       x = "", y = "Acres") +
   scale_y_continuous(labels = comma) +
   theme(plot.title = element_text(size = 20), axis.title = element_text(size = 20), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black"))
@@ -281,7 +283,7 @@ Development, recently logged areas, mining, agriculture, and other modern-day di
 
 The last components of the Michigamme Highlands we will look at in this document are existing vegetation height and existing vegetation cover. These data are provided by the LANDFIRE database. 
 
-## How to read a Heatmap
+### How to read a Heatmap
 
 For looking at EVC & EVH, we decided to create "heatmaps". They combine color intensity and location on the x-axis to represent data. 
 
@@ -431,7 +433,7 @@ To assess the levels of these types of degradation we:
 3. Summarized to those labels by acres for the chart
 4. Joined tabular data to the combined data by value to generate the map. 
 
-Acres per level of degradation on Northern Hardwood sites
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=12}
 
 degraded <- read_csv("degraded.csv")
@@ -440,9 +442,10 @@ degradedChart <-
 ggplot(degraded, aes(x = reorder(label, percent), y = percent)) + 
   geom_bar(stat = "identity", fill = "aquamarine4") +
   coord_flip() +
-  
-  ggtitle("Level of degredation of Northern Hardwoods sites") +
-  labs(x = "", y = "Acres") +
+  labs(title = "Levels of degredation of northern hardwood sites", 
+       subtitle = "~55% of these sites in lowest degredation level", 
+       caption = "Source: LANDFIRE Biophysical Settings, Existing Vegetation Cover and Type (2016)", 
+       x = "", y = "Percent") +
   scale_y_continuous(labels = comma, limits = c(0, 60)) +
   theme(plot.title = element_text(size = 20), axis.title = element_text(size = 20), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) 
@@ -453,10 +456,13 @@ degradedChart
 
 Roughly 72% of the northern hardwood sites are still mapped as northern hardwood sites, but ~30% (~17% of analysis area) of those areas have canopy cover of less than 70% suggesting.  Around 5% (over 16k acres) of the northern hardwood sites were mapped as plantation.
 
+<br>
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.cap="Map of degredation levels of northern hardwood sites"}
 knitr::include_graphics("michiDegraded2.jpg")
 ```
+
+<br>
 
 Northern hardwoods with less than 70% canopy closure are mostly in the southwestern region of the Michigamme Highlands, with plantations being spread throughout the area.
 

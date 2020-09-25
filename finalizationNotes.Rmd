@@ -1,0 +1,34 @@
+---
+title: "Finalizing!"
+author: "Randy Swaty"
+date: "9/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# capturing final todos outside of main document
+
+
+
+
+#  TO DO LIST by 22 July 20 WEDNESDAY:
+* Laura will read/edit **DONE**
+* Laura will do the fig.width=12 thing to all charts **DONE** 
+* Randy will fix labels in chart to match map **DONE**
+* Randy will fix "norther" on map PLUS implement Emily's requests **DONE**
+* Randy will write up methods/rules/interp for degraded **DONE**
+* THEN Laura will send to Seth for review (remember to acknowledge his review); also consider appending his literature review **About to be DONE**
+* Laura and Randy: consider a note at the top...noting this is a Phase 1...there's a lot more we can do. AND This serves as an initial baseline. **DONE**
+* Laura and/or Randy writes figure captions  **DONE**
+* Laura added the percentages "left out" from omitting <2% groups, or actually put the percentages of what was kept/represented in the graphs. **DONE**
+
+# Notes as of 25 Sept 2020
+
+Greasy:
+
+* reformatted/added subtitles and captions to charts'
+* added in some "white space" with <br>
+* formatted headings a bit--could use more.  Check for readibility
