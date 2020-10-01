@@ -3,14 +3,16 @@ title: "Michigame Highlands Exploration"
 author: "Laura Slavsky and Randy Swaty- Conservation Data Lab"
 date: "7/22/2020"
 output:
-  html_document:
-    number_sections: no
+  html_document: 
     theme: lumen
     toc: yes
     toc_depth: 4
     toc_float:
-      toc_collapsed: false
-      smooth_scroll: false
+      toc_collapsed: no
+      smooth_scroll: no
+  pdf_document:
+    toc: yes
+    toc_depth: '4'
 editor_options:
   chunk_output_type: console
 code_folding: hide
