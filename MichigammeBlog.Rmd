@@ -1,0 +1,51 @@
+---
+title: "Exploring the Michigamme Highlands"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The state of forested land in the Upper Peninsula of Michigan: exploring LANDFIRE data to gather a clearer picture. 
+
+<br>
+
+True to the CDL's mantra of coding, creating, and conserving, today we're bringing you example of work done by Conservation Data Lab member Laura Slavsky along with Randy Swaty. To start, let's take a look at where the project takes place:
+
+[Emily's map goes here]
+
+The Michigamme Highlands Ecoregion is located in the north-central part of the Upper Peninsula of Michigan. This area is ecologically diverse, with many different forest types and water bodies throughout.
+
+To get a better idea of the big picture of the state of the Michigamme Highlands, Laura & Randy created an R markdown using LANDFIRE data (https://www.landfire.gov/bps.php). They considered historical forest types, current forest types, current vegetation height & current vegetation cover in their analysis. 
+
+The main goals of their work are to:
+
+* Provide basic graphics and interpretations of the Michigamme Highlands vegetation, past and present,
+* Identify degraded lands on Northern Hardwoods sites, &
+* Summarize conditions of existing vegetation cover, height and type
+
+To be continued...
+
+
+You can find the complete Michigamme Exploration document here: https://lslavsky.github.io/Michi/Exploration.html 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

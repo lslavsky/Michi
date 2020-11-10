@@ -1,5 +1,5 @@
 ---
-title: "Michigame Highlands Exploration"
+title: "Michigamme Highlands Exploration"
 author: "Laura Slavsky and Randy Swaty- Conservation Data Lab"
 date: "7/22/2020"
 output:
